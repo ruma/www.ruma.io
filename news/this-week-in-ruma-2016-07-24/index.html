@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-24/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-24" itemprop="datePublished">2016-07-24</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>This was a relatively quiet week in terms of code changes.
+I'm working on nailing down ruma-identifiers in preparation for using it in ruma-events before I start working on serialization in ruma-events, which is needed for the next step in ruma itself.
+Serde is about to release 0.8, which has some breaking changes including a revamped API for manually implementing serialization.
+I started to learn how it works since I'll need to use it as soon as it's released.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Add <code>EventId</code>, <code>RoomId</code>, and <code>RoomAliasId</code>.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>I discovered that the new spec introduction that includes the grammar for Matrix IDs is missing some important details about event and room IDs.
+The spec currently defines them as <code>sigil opaque_id &quot;:&quot; server_name</code> but does not define <code>opaque_id</code> at all.
+Certain limitations are important to note for the purposes of parsing and compatibility, such as allowed character set and minimum and maximum lengths.
+I think it's also important to disallow characters that would be problematic for display or parsing, such as whitespace, newlines, and colons, which are also used as the delimiter between opaque ID, IP/hostname, and port.
+There was already a JIRA issue for specifying these types of IDs, <a href="https://matrix.org/jira/browse/SPEC-389">SPEC-389</a>, so I added my concerns there.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/rust-lang-nursery/rustup.rs/releases/tag/0.4.0">rustup 0.4</a> was released, which contains the change I made previously for allowing arbitrary toolchains to be installed alongside rustup itself.
+I'll be using this to improve Ruma's Docker development image.</li>
+<li><a href="https://github.com/serde-rs/serde/pull/462">serde-rs/serde#462</a>: A simple doc fix I made to Serde while looking through the 0.8 changes.</li>
+<li><a href="https://github.com/rust-lang/rfcs/pull/1681">rust-lang/rfcs#1681</a>: Procedural macros 1.1.
+Only tangentially related to Ruma, but an important effort that could help in getting Ruma onto stable Rust.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

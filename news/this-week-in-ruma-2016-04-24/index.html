@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-04-24/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-04-24" itemprop="datePublished">2016-04-24</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>I said last week that there wouldn't be an update this week because I'm on vacation, but as it turns out a bit of progress was made before I left and I have a few minutes to make the update while my partner writes postcards to send back home.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>
+<p>Add initial stub implementation of user-interactive authentication.</p>
+<p>Matrix's interactive auth system is in a bit of a transition, so there has been lots of investigation and discussion with the core team to learn how it works.
+I was able to make some good progress on how it will be represented as Rust code, but there are many more changes to come.
+I hope to have &quot;dummy&quot; authentication working soon.</p>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>Many of my questions about the specification have been answered, thanks to Richard van der Hoff of the Matrix core team.
+A few issues are ongoing, but all of this discussion will be very helpful in improving the specification and clarifying some flows so that Ruma can implement them.</p>
+<p>Specifically:</p>
+<ul>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-385">SPEC-385</a>: PUT requests should use the JSON body for all request parameters</p>
+<p>Came to agreement that, at least for the <code>/register</code> API endpoint, request parameters related to the registration should not be split arbitrarily across the query string and the body of the request.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-343">SPEC-343</a>: Explain the purpose of refresh tokens</p>
+<p>Clarified why Matrix authentication involves both &quot;access tokens&quot; and &quot;refresh tokens,&quot; where implementations are free to make their own choices, and the trade offs involved.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-313">SPEC-313</a>: Provide a high level overview of the different event syncing API endpoints</p>
+<p>Ongoing discussion of which APIs are used by the client to get events, and how best to update the spec to make recent API deprecations more clear.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-310">SPEC-310</a>: Consider renaming &quot;state key&quot; to &quot;subtype&quot; and making it optional</p>
+<p>Ongoing discussion of the semantics of Matrix's &quot;state events,&quot; as well as discussion about how to balance the quality of the spec with the need to make progress on implementations.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-308">SPEC-308</a>: Authentication API is unclear/misleading</p>
+<p>Ongoing discussion about how the user-interactive authentication system relates to specific API endpoints that use it, like <code>/register</code> and <code>/login</code>.</p>
+</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

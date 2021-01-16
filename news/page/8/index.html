@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-31/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-31" itemprop="datePublished">2016-07-31</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>This week <a href="https://github.com/serde-rs/serde/releases/tag/v0.8.0">serde 0.8.0</a> was released, offering a new serialization API.
+Most of the work on Ruma was towards serialization of the ID and event types.
+This will support the next step of implementing APIs in the homeserver that take events as user input.
+In addition to the changes landed in ruma-events, I've been working on figuring out how to approach Matrix types that are represented as enums in Rust code but involve checking the value of a key in the JSON structure of the serialized form to determine which variant it is.
+I hope to get this nailed down and committed by next week's update.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Implement serialization and deserialization for ID types.</li>
+<li>Change the <code>new</code> constructor to an implementation of <code>TryFrom</code> and add a separate <code>generate</code> constructor for generating new IDs with random localparts.</li>
+<li>Begin running the test suite on Travis CI.</li>
+<li>Publish the crate to crates.io.
+ruma-identifiers is the first Ruma component to get a crates.io release!</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Convert the types of struct fields that represent a Matrix ID from <code>String</code> to the relevant type from ruma-identifiers.</li>
+<li>Manually implement serialization and deserialization for a few enum types where the variant name appears in JSON camel cased.
+This was initially done by copy/pasting similar code between types, but was replaced with a macro that reduced a lot of duplication (and actually increased the test suite coverage by testing every single variant of each enum.)</li>
+<li>Begin running the test suite on Travis CI.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-24/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-24" itemprop="datePublished">2016-07-24</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>This was a relatively quiet week in terms of code changes.
+I'm working on nailing down ruma-identifiers in preparation for using it in ruma-events before I start working on serialization in ruma-events, which is needed for the next step in ruma itself.
+Serde is about to release 0.8, which has some breaking changes including a revamped API for manually implementing serialization.
+I started to learn how it works since I'll need to use it as soon as it's released.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Add <code>EventId</code>, <code>RoomId</code>, and <code>RoomAliasId</code>.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>I discovered that the new spec introduction that includes the grammar for Matrix IDs is missing some important details about event and room IDs.
+The spec currently defines them as <code>sigil opaque_id &quot;:&quot; server_name</code> but does not define <code>opaque_id</code> at all.
+Certain limitations are important to note for the purposes of parsing and compatibility, such as allowed character set and minimum and maximum lengths.
+I think it's also important to disallow characters that would be problematic for display or parsing, such as whitespace, newlines, and colons, which are also used as the delimiter between opaque ID, IP/hostname, and port.
+There was already a JIRA issue for specifying these types of IDs, <a href="https://matrix.org/jira/browse/SPEC-389">SPEC-389</a>, so I added my concerns there.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/rust-lang-nursery/rustup.rs/releases/tag/0.4.0">rustup 0.4</a> was released, which contains the change I made previously for allowing arbitrary toolchains to be installed alongside rustup itself.
+I'll be using this to improve Ruma's Docker development image.</li>
+<li><a href="https://github.com/serde-rs/serde/pull/462">serde-rs/serde#462</a>: A simple doc fix I made to Serde while looking through the 0.8 changes.</li>
+<li><a href="https://github.com/rust-lang/rfcs/pull/1681">rust-lang/rfcs#1681</a>: Procedural macros 1.1.
+Only tangentially related to Ruma, but an important effort that could help in getting Ruma onto stable Rust.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-17/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-17" itemprop="datePublished">2016-07-17</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Ruma has a new logo!
+You can see it on the <a href="/">home page</a>, the <a href="https://github.com/ruma">GitHub organization</a>, and the <a href="https://twitter.com/ruma_io">Twitter account</a>.
+For a few weeks I've been experimenting with implementing additional parts of the room creation API, and have learned a lot about how I will approach it, but nothing has landed on master yet.
+Some of my work has resulted in new issues for the spec, detailed below.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Following the new version of the spec which provides formal definitions of Matrix IDs, this new crate was added to the Ruma organization on GitHub to isolate the logic for Matrix IDs.</li>
+</ul>
+<h2 id="notable-changes-to-www-ruma-io">Notable changes to <a href="https://github.com/ruma/ruma.github.io">www.ruma.io</a></h2>
+<ul>
+<li>Add new logo to the home page.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>A new stable version of the client-server specification was released: r0.2.0.
+Notable improvements include an explicit licensing of the spec and a formal definition of Matrix ID grammar.
+The <a href="https://matrix.org/blog/2016/07/14/client-server-spec-r0-2-0-released/">blog post</a> has links to more.</li>
+<li><a href="https://matrix.org/jira/browse/SPEC-429">SPEC-429</a>: Create room API: details of handling initial_state.
+This issue will move important details currently only in the implementation of Synapse into the spec itself.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/rust-lang-nursery/rustup.rs/pull/586">rustup.rs#586</a>: Allow any toolchain to be specified as the default during rustup installation.
+Once this is released, it will unblock <a href="https://github.com/ruma/docker-ruma-dev/issues/1">docker-ruma-dev#1</a>, which will allow for the version of nightly Rust used by Ruma to be pinned.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-03/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-03" itemprop="datePublished">2016-07-03</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Three major milestones happened for Ruma this week!</p>
+<ol>
+<li>Support for events, the basic unit of data in Matrix, landed on the master branch.
+This is very important, because it's the foundation for almost all the core functionality of the homeserver.
+The initial implementation of events does not support federation, to keep the scope small, and because the details of federation are still not well specified.</li>
+<li>Ruma's <a href="https://www.ruma.io/docs/">documentation website</a> was launched, with its first guide, the <a href="https://www.ruma.io/docs/matrix/">Introduction to Matrix</a>, which provides a great explanation of Matrix targeted at non-technical users.</li>
+<li>Ruma <a href="https://twitter.com/ruma_io/status/749834912077713409">reached the top of the Hacker News front page</a>.
+Be sure to read the <a href="https://news.ycombinator.com/item?id=12028475">comment thread</a>.</li>
+</ol>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Add support for events.</li>
+<li>Add partial support for additional parameters to the room creation endpoint: <code>name</code>, <code>topic</code>, <code>preset</code>, and <code>invite</code>.</li>
+<li>Create some of the necessary events when a room is created: <code>m.room.create</code>, <code>m.room.name</code>, <code>m.room.topic</code>, <code>m.room.history_visibility</code>, <code>m.room.join_rules</code>, and <code>m.room.member</code>.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <code>ruma-events</code></h2>
+<ul>
+<li>All event types were restructured to include two generic parameters, one for the primary &quot;content&quot; payload, and one for optional &quot;extra content.&quot;
+This was done to support certain events in the specification that have non-standard key-value pairs at the top level of the data structure.</li>
+<li>Remove the <code>EventKind</code> trait.</li>
+<li>Add support for custom event types.</li>
+</ul>
+<h2 id="notable-changes-to-www-ruma-io">Notable changes to <code>www.ruma.io</code></h2>
+<ul>
+<li>Add new documentation site and Introduction to Matrix guide. (Contributed in part by Leah Scampoli.)</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/leahscampoli">Leah Scampoli</a></li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>
+<p><a href="https://matrix.org/jira/browse/SYN-720">SYN-720</a>: Validation of event content from user input</p>
+<p>Note that this is a bug filed against Synapse, not the spec itself.
+This was discovered while working on support for the room creation API endpoint's <code>initial_state</code> parameter.
+Ruma will do proper validation of state events created through this mechanism.</p>
+</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-06-26/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-06-26" itemprop="datePublished">2016-06-26</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>There was a lot of work on documentation and code this week, but almost nothing landed on master, so unfortunately there is little to show.
+An initial draft of the Introduction to Matrix overview document has been pushed to a branch, but a few changes are still planned before it is released.
+On Ruma itself, a lot of work happened on a branch (currently unpublished) to add support for events to the system.
+Events are the primary object in the Matrix system, so the addition of this foundational layer will open the gates for all the other major features.
+The event system is not simple, however, and it's taking some time to figure out a good architecture for data persistence.
+Because events are involved in both the client-server and federation APIs, and the federation API has not yet had a stable release, it's very difficult to design the system properly.
+One issue (noted below) has been opened on the Matrix spec requesting clarification that may help to decide on a suitable architecture.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Add <code>PUT /directory/room/:room_alias</code> endpoint. (Contributed by Johannes Oertel.)</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <code>ruma-events</code></h2>
+<ul>
+<li>Use generic types for <code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code>.</li>
+<li>Add unsigned field to <code>RoomEvent</code> and <code>StateEvent</code>.</li>
+<li>Add <code>EventKind</code> trait.
+(The event kinds are basic events, room events, and state events.
+This trait can be useful to constrain a generic parameter that must be a Matrix event.)</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li><a href="https://matrix.org/jira/browse/SPEC-416">SPEC-416</a>: Document all event keys shown in examples</li>
+</ul>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;7&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">8 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;9&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2019-06-16/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-06-16" itemprop="datePublished">2019-06-16</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>Work is underway to bring Ruma up to date with <a href="https://matrix.org/docs/spec/client_server/r0.5.0">version r0.5.0</a> of the Matrix specification.
+Starting with the most foundational libraries and working up towards the higher-level ruma-client, this work should be done in the next week or two.
+The bulk of the work since the last update has been on <a href="https://github.com/ruma/ruma-events">ruma-events</a>, adding all of the events that were previously missing, and doing a full pass through existing events to make sure our definitions match the specification.</p>
+<p>In addition, community members Florian and Luca identified <a href="https://github.com/ruma/ruma-events/issues/27">an issue</a> regarding the use of Rust's <code>u64</code> and <code>i64</code> for numeric values and potential interoperability problems with JavaScript.
+After some discussion, Ruma team member jplatte created a new crate called <a href="https://github.com/jplatte/js_int">js_int</a> to address this.
+It has already been integrated with ruma-client-api and ruma-events, and will be used for all integer values in Ruma from now on.</p>
+<h2 id="notable-changes-to-ruma-api">Notable changes to <a href="https://github.com/ruma/ruma-api">ruma-api</a></h2>
+<ul>
+<li>Released <a href="https://github.com/ruma/ruma-api/releases/tag/0.8.0">version 0.8.0</a>.
+<ul>
+<li>Simplified the <code>Error</code> type.</li>
+<li>Updated to the latest ruma-identifiers (0.13).</li>
+</ul>
+</li>
+</ul>
+<h2 id="notable-changes-to-ruma-api-macros">Notable changes to <a href="https://github.com/ruma/ruma-api-macros">ruma-api-macros</a></h2>
+<ul>
+<li>Released <a href="https://github.com/ruma/ruma-api-macros">version 0.5.0</a>
+<ul>
+<li>Generated documentation now includes the names and descriptions of API endpoints.</li>
+<li>Updated to the latest ruma-api (0.5).</li>
+</ul>
+</li>
+</ul>
+<h2 id="notable-changes-to-ruma-client-api">Notable changes to <a href="https://github.com/ruma/ruma-client-api">ruma-client-api</a></h2>
+<ul>
+<li>Integrated the new <a href="https://github.com/jplatte/js_int">js_int</a> crate to ensure numeric types conform to the requirements stated in the specification.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Added new events and updated existing events to cover everything in version r0.5.0 of the client-server specification.
+Notably, this includes events for end-to-end encryption and push notifications.</li>
+<li>Integrated the new <a href="https://github.com/jplatte/js_int">js_int</a> crate to ensure numeric types conform to the requirements stated in the specification.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Released <a href="https://github.com/ruma/ruma-identifiers/releases/tag/0.13.0">version 0.13.0</a>
+<ul>
+<li><code>EventId::hostname</code> and <code>EventId::port</code> now return <code>Option</code> because they are only applicable for the original event ID format.</li>
+<li>All methods named <code>opaque_id</code> are now named <code>localpart</code>.</li>
+<li><code>EventId</code> now supports multiple formats according to the different <a href="https://matrix.org/docs/spec/#room-versions">room versions</a>.</li>
+<li><code>RoomVersionId</code> was added.</li>
+<li><code>DeviceId</code> and a function for generating a <code>DeviceId</code> were added.</li>
+</ul>
+</li>
+<li>Released <a href="https://github.com/ruma/ruma-identifiers/releases/tag/0.13.1">version 0.13.1</a>
+<ul>
+<li>Added support for room version 5 with <code>RoomVersionId::version_5</code> and <code>RoomVersionId::is_version_5</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>In the last post I mentioned that Matrix 1.0 was coming soon, and it has now happened!
+A hearty congratulations to everyone who works on Matrix!
+This is a huge milestone.
+You can read the details about Matrix 1.0, as well as the new Matrix.org Foundation, over on the Matrix blog: <a href="https://matrix.org/blog/2019/06/11/introducing-matrix-1-0-and-the-matrix-org-foundation">Introducing Matrix 1.0 and the Matrix.org Foundation</a>.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2019-06-02/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-06-02" itemprop="datePublished">2019-06-02</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>Ruma has largely been on hiatus while we wait for async networking in Rust to mature.
+We now have a <a href="https://www.ruma.io/status/">project status page</a> which gives the full story.
+Please refer people here if they wonder about the project's activity.</p>
+<p>The stabilization of async/await syntax is now on the horizon, so this week I worked on bringing the Ruma homeserver up to date.
+I updated all its dependencies to their latest versions, which took a bit of work, primarily due to updating from pre-1.0 Diesel to Diesel 1.4, as well as some breaking changes in ruma-events.
+The good news is that the homeserver is now a Rust 2018 edition crate and compiles on stable Rust!
+That means that the entire Ruma project is now running on stable Rust.</p>
+<p>I made some other relatively minor updates to the other Ruma libraries, adding rustfmt and clippy to their builds and addressing lots of clippy warnings.
+Several of the Ruma libraries now have substantially more internal documentation, which should help anyone who wants to work on them in the future.
+ruma-client also has some new crate-level documentation which should make it much more friendly to new users.</p>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>The Matrix team is getting ready to release 1.0 versions of the Matrix specifications.
+This is great news, as it means things are going to stabilize.
+When this happens, we'll be able to bring the various Ruma libraries up to date without having to worry about any more major changes.
+We'll also begin implementing the other APIs (e.g. federation) after the 1.0 specs are released.</p>
+<h2 id="rust-at-large">Rust at large</h2>
+<p>As noted above, there is now an expected date for the stabilization of async/await syntax.
+It's expected to become stable with the release of Rust 1.37 in August.
+Once this happens, the Rust ecosystem will begin to adopt the new syntax, as well as the new version of futures provided by the standard library.
+Eventually, the dust will settle, and we'll be in a good position to choose a new web framework to replace Iron, which is what the Ruma homeserver currently uses but is no longer an active project.</p>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/aledomu">Alejandro Domínguez</a></li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2018-12-09/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2018-12-09" itemprop="datePublished">2018-12-09</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>It's been more than a year since the last This Week in Ruma.
+The project has been mostly on hiatus while waiting for revisions to the Matrix spec and maturity of the Rust ecosystem.
+Ruma is not dead, however, and small improvements have continued over the last year.
+The Matrix spec has advanced quite a bit and many of the blocking issues for Ruma have been resolved.
+Rust's maturity is another story.
+async/await is still under development and this is the most significant blocking issue to progress on Ruma.
+For a longer analysis of why we're waiting, <a href="https://www.reddit.com/r/rust/comments/a42ojg/the_fallow_year_my_rust2019_post/ebb44e4/">this reddit comment</a> puts it very well.</p>
+<p>The main announcement to make at this point is that there is now a <a href="https://crates.io/crates/ruma-client">crates.io release of ruma-client</a>, the high-level client library most developers will use to build Matrix-enabled software.</p>
+<p>Thank you to all the new contributors since the last This Week in Ruma, and for everyone who has continued to show interest in the project despite the lull in development.</p>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/Johni0702">Jonas Herzig</a></li>
+<li><a href="https://github.com/digitalatigid">Digital</a></li>
+<li><a href="https://github.com/florianjacob">Florian Jacob</a></li>
+<li><a href="https://github.com/jo-so">Jörg Sommer</a></li>
+<li><a href="https://github.com/musoke">Nathan Musoke</a></li>
+<li><a href="https://github.com/neosam">Simon Goller</a></li>
+<li><a href="https://github.com/noformnocontent">noformnocontent</a></li>
+<li><a href="https://github.com/rschulman">Ross Schulman</a></li>
+<li><a href="https://github.com/severen">Severen Redwood</a></li>
+<li><a href="https://github.com/tilpner">Till Höppner</a></li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2017-05-14/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2017-05-14" itemprop="datePublished">2017-05-14</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>It's been several months since the last This Week in Ruma.
+There has been some work on Ruma during this time, but development has largely been on hiatus while we wait for the dust to settle on two things:</p>
+<ol>
+<li>Stabilization and release of hyper 0.11 (the tokio-based async rewrite).</li>
+<li>A new version of the Matrix specification that includes the many changes since the current version.</li>
+</ol>
+<p>The former has been in the &quot;nearly done&quot; state for a while now, so we've been doing a bit of development against hyper's master branch.
+As far as I know, no significant API changes are expected at this point.
+The latter has been delayed significantly because the Matrix team has been up to their eyeballs in work on <a href="https://riot.im/">Riot</a>, particularly in squashing issues with end-to-end encryption as they try to move it out of beta.
+While we would like a new spec to help in moving Ruma forward, the Matrix team has our full support on their current priorities, as fully working encryption for messages is simply way more important for the world right now.</p>
+<p>A change in the Ruma project worth noting is that I've decided to end my policy of &quot;no new unstable features,&quot; effectively deprioritizing moving Ruma's crates to stable Rust.
+The simple reaosn for this is that there are still unstable features that change what the ideal API for some of our crates would be.
+Having the best possible API should take priority over which version of Rust is required, especially with how easy it is to install Rust with rustup.</p>
+<p>Personally, I've been more focused on the client-side libraries recently.
+The past week I've made a lot of progress on finalizing and implementing the API for ruma-api, ruma-client-api, and ruma-client.
+In the last update back in February, I mentioned working on a custom derive to make the implementation of Matrix APIs easier.
+That has evolved into a full Macros 2.0 procedural macro that offers a very succinct, declarative API that will make the client libraries much simpler.
+This work is still very much in progress, but having finally figured out an approach for this is a big milestone in having a usable Matrix client library for Rust.
+We're excited to see what Rust developers build with it when it's ready.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added the <code>/rooms/:room_id/kick</code> API endpoint.</li>
+<li>Added initial implementation for the room states in the <code>/sync</code> API endpoint.</li>
+<li>Corrected the structure of authentication parameters in login requests.</li>
+<li>Fixed the behavior of the <code>next_batch</code> token when there are no new events for the <code>/sync</code> API endpoint.</li>
+<li>Added basic implementation for the pushers API endpoint.</li>
+<li>Return empty JSON objects as the default response for Riot compatibility.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-api">Notable changes to <a href="https://github.com/ruma/ruma-api">ruma-api</a></h2>
+<ul>
+<li>Revised the API into a simpler form that specifies conversions between hyper's types and its own.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Published versions 0.10.0 and then 0.11.0 with small changes, most notably updating to serde 1.0.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Published versions 0.7.0 and then 0.8.0 with small changes, most notably updating to serde 1.0.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/briansmith">Brian Smith</a></li>
+</ul>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Interested in getting involved with Ruma?
+Here are some good places to start:</p>
+<p>Previously featured and still available:</p>
+<ul>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/157">Sending a m.room.member event again after changing avatar or displayname</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma-client-api/issues/10">Bikeshed: Module names</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma/issues/110">Implementing Event storage/search with a timeseries database or a lucene indexed database</a></li>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/107">Implement a rate-limiting middleware</a></li>
+</ul>
+<p>There are also plenty of API endpoints that still need to be implemented.
+Check the <a href="https://github.com/ruma/homeserver/blob/master/STATUS.md">status document</a> for a list.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2017-02-19/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2017-02-19" itemprop="datePublished">2017-02-19</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>Progress on ruma-api and ruma-client-api, converting ruma-client-api over to the new approach ruma-api is using.
+After converting several of the modules using macros, I decided to take another stab at using a macros 1.1 procedural macro for automatically implementing the details of each request and response type.
+The result is the new <a href="https://github.com/ruma/ruma-api-derive">ruma-api-derive</a>.
+So far it handles only a couple of simple variations, but with some of the groundwork laid, it should be easier now to fill out the remaining functionality.
+The result will be that ruma-client-api will be completely declarative, and won't have to resort to manual trait implementation for a few odd cases that didn't fit the pattern of the &quot;macros by example&quot; macros.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Updated Diesel to the 0.11 series.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Published version 0.9.0, which updates Diesel to the 0.11 series.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Published version 0.6.0, which updates ruma-identifiers to the 0.9 series.</li>
+</ul>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Interested in getting involved with Ruma?
+Here are some good places to start:</p>
+<p>Previously featured and still available:</p>
+<ul>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/157">Sending a m.room.member event again after changing avatar or displayname</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma-client-api/issues/10">Bikeshed: Module names</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma/issues/110">Implementing Event storage/search with a timeseries database or a lucene indexed database</a></li>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/107">Implement a rate-limiting middleware</a></li>
+</ul>
+<p>There are also plenty of API endpoints that still need to be implemented.
+Check the <a href="https://github.com/ruma/homeserver/blob/master/STATUS.md">status document</a> for a list.</p>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;3&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">4 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;5&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

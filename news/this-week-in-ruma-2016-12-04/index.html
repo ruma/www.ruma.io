@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-12-04/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-12-04" itemprop="datePublished">2016-12-04</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>We had a very productive week, landing several pull requests, including a major revamp of ruma-events and new APIs.</p>
+<p>A very important milestone was reached: The number of unstable Rust features Ruma uses was reduced from six to two!
+Ruma was migrated to the new Macros 1.1 approach for custom derive, which meant we were able to drop the <code>custom_attribute</code>, <code>custom_derive</code>, and <code>plugin</code> features.
+As part of the integration of the ruma-events revamp, <code>specialization</code> was also removed.
+With <code>question_mark</code> now stable, Ruma uses only <code>proc_macro</code> (Macros 1.1, which will be stable in a few more releases) and <code>try_from</code>, which I hope to see movement on soon.
+The day that Ruma can target stable Rust is approaching!</p>
+<p>The revamp of ruma-events changed the design of the library, so each of the kinds of event in Matrix (events, room events, and state events) are now traits rather than structs with two generic parameters.
+This change took quite a while, so I'm happy to have it finally integrated into Ruma.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for local room invitations.</li>
+<li>Removed unstable features: <code>custom_attribute</code>, <code>custom_derive</code>, <code>plugin</code>, and <code>specialization</code>.</li>
+<li>Updated to Macros 1.1 versions of Serde and Diesel.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li><code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> are now traits.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Released crate version 0.4.3, a small bump to update dependencies.</li>
+</ul>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Here are a couple of items to check out if you're interested in contributing to the project:</p>
+<ul>
+<li>For implementation: <a href="https://github.com/ruma/ruma/issues/115">Implement the Into&lt;Option&gt; trick for ApiError.</a>.</li>
+<li>For review and discussion: <a href="https://github.com/ruma/ruma-events/pull/5">Add types to support heterogeneous collections of events</a>.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

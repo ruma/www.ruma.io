@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-05-22/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-05-22" itemprop="datePublished">2016-05-22</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>Lots of progress this week!
+As expected, I finished the <code>/login</code> endpoint, so I can now move on to the real stuff: rooms and the event stream.
+This week also saw two nice milestones:
+Ruma's first pull request was merged, and I successfully registered an account with a locally running Ruma server via a locally running <a href="https://vector.im/">Vector</a> client.
+(The latter also uncovered an undocumented API that Vector was attempting to use which I've brought up with the Matrix team.)</p>
+<p>Before taking the plunge into rooms and events, I'm taking some time to think and plan about how to structure the data, and have been talking with the Matrix team about how Synapse handles things, lessons learned, and the trade offs of different approaches.
+A few months ago, Erik Johnston of the core team wrote up some <a href="https://gist.github.com/erikjohnston/ae60767679278c0c4519">notes on data storage in Matrix</a> which has been very useful in this planning stage.
+It's a great read if you're interested in some of the tricky issues in Matrix development.</p>
+<p>There was also a little discussion on how difficult it is to represent certain JSON structures in the API as Rust types.
+There are several data structures in the API that are effectively enums, but can't be automatically deserialized by Serde because of two things:
+<a href="https://github.com/serde-rs/serde/issues/251">how Serde currently handles enums</a> and the fact that variants can only be determined by examining the values of some of their fields.
+The latter currently requires manual implementation of deserialization, which gets cumbersome very quickly.
+The way I'm probably going to address this is to deserialize these types of data structures to an intermediate type so simple deserialization from JSON can be separated from higher level detection and validation logic.
+To that end, I built the <a href="https://github.com/jimmycuadra/validations">validations</a> library, which provides both an interface for validating a type, and types for representing validation errors.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Finished a simple working version of the <code>/login</code> API endpoint.</li>
+<li>Added <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> support to all endpoints.</li>
+<li>Reexported the Iron handlers for API endpoints from their parent module to make imports a little less verbose.</li>
+<li>Renamed the <code>FinalConfig</code> type to <code>Config</code>, and the previously named <code>Config</code> to the now private <code>RawConfig</code> type.</li>
+<li>Revised the README with full documentation of the configuration file's format along with some other improvements.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/jooert">Johannes Oertel</a></li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

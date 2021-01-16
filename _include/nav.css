@@ -1,0 +1,1 @@
+.site-nav{background:var(--navbar-bg);font-weight:500}.site-nav ul{margin:0;padding:0;display:flex;justify-content:flex-end;flex-wrap:wrap;list-style:none}.site-nav a{display:inline-block;padding:.8em .65em;color:var(--navbar-link-color);text-decoration:none}.site-nav a:hover{color:var(--navbar-link-hover-color)}

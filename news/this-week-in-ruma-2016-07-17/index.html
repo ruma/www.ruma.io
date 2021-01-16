@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-17/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-17" itemprop="datePublished">2016-07-17</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>Ruma has a new logo!
+You can see it on the <a href="/">home page</a>, the <a href="https://github.com/ruma">GitHub organization</a>, and the <a href="https://twitter.com/ruma_io">Twitter account</a>.
+For a few weeks I've been experimenting with implementing additional parts of the room creation API, and have learned a lot about how I will approach it, but nothing has landed on master yet.
+Some of my work has resulted in new issues for the spec, detailed below.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Following the new version of the spec which provides formal definitions of Matrix IDs, this new crate was added to the Ruma organization on GitHub to isolate the logic for Matrix IDs.</li>
+</ul>
+<h2 id="notable-changes-to-www-ruma-io">Notable changes to <a href="https://github.com/ruma/ruma.github.io">www.ruma.io</a></h2>
+<ul>
+<li>Add new logo to the home page.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>A new stable version of the client-server specification was released: r0.2.0.
+Notable improvements include an explicit licensing of the spec and a formal definition of Matrix ID grammar.
+The <a href="https://matrix.org/blog/2016/07/14/client-server-spec-r0-2-0-released/">blog post</a> has links to more.</li>
+<li><a href="https://matrix.org/jira/browse/SPEC-429">SPEC-429</a>: Create room API: details of handling initial_state.
+This issue will move important details currently only in the implementation of Synapse into the spec itself.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/rust-lang-nursery/rustup.rs/pull/586">rustup.rs#586</a>: Allow any toolchain to be specified as the default during rustup installation.
+Once this is released, it will unblock <a href="https://github.com/ruma/docker-ruma-dev/issues/1">docker-ruma-dev#1</a>, which will allow for the version of nightly Rust used by Ruma to be pinned.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

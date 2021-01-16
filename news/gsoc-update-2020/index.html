@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>Breaking ruma-events | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update-2020/" itemprop="headline">
+            Breaking ruma-events
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-11" itemprop="datePublished">2020-06-11</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+    <p>This week in ruma-events' Google Summer of Code project, I was able to finish the macros needed to generate the event content enums and trait implementations required for events. I started by defining the <a href="https://github.com/ruma/ruma-events/pull/107">generic event structs</a> (state, message, etc.) and manually writing the <code>Serialize</code> and <code>Deserialize</code> implementations. Over the next few days, this was moved into a custom derive macro called <a href="https://github.com/ruma/ruma-events/pull/108"><code>Event</code></a>. The derive now implements all necessary traits with appropriate bounds, so a <code>StateEvent&lt;C&gt;</code> can not contain any ephemeral event content and so forth. I have removed the <a href="https://github.com/ruma/ruma-events/pull/111"><code>raw</code></a> mod and related <code>FromRaw</code> and <code>TryFromRaw</code> traits, moving the validation into the deserialization and constructor for the few types that needed it. On the <a href="https://github.com/ruma/ruma-events/pull/106">event content</a> side of things, a function like procedural macro was used to allow declaring the enum using Matrix event type identifiers.</p>
+<pre style="background-color:#f5f5f5;">
+<code class="language-rust" data-lang="rust"><span style="color:#a2a001;">event_content_enum! </span><span style="color:#1f1f1f;">{
+    </span><span style="color:#7f8989;">/// Any message event.
+</span><span style="color:#1f1f1f;">    name: AnyMessageEventContent,
+    events: [
+        </span><span style="color:#d07711;">&quot;m.call.answer&quot;</span><span style="color:#1f1f1f;">,
+        </span><span style="color:#d07711;">&quot;m.room.message&quot;</span><span style="color:#1f1f1f;">,
+        </span><span style="color:#7f8989;">// ...
+    </span><span style="color:#1f1f1f;">]
+}
+</span><span style="color:#7f8989;">// Produces
+</span><span style="color:#668f14;">pub enum </span><span style="color:#c23f31;">AnyMessageEventContent </span><span style="color:#1f1f1f;">{
+    CallAnswer(CallAnswerEventContent),
+    RoomMessage(MessageEventContent),
+}
+</span></code></pre>
+</article>
+
+
+
+
+</div>
+
+</html>

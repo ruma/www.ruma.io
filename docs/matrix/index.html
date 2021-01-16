@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>Introduction to Matrix | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<h1 class="section-title">Introduction to Matrix</h1>
+
+<div class="section-nav-content-wrap">
+    <aside class="section-nav">
+    <ul>
+        <li><a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;docs&#x2F;matrix&#x2F;">Overview</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;docs&#x2F;matrix&#x2F;why&#x2F;">Why Matrix Matters</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;docs&#x2F;matrix&#x2F;features&#x2F;">Matrix Features</a></li>
+    
+    </ul>
+</aside>
+
+
+    <main class="content">
+        <p>Matrix is a protocol for communicating online.</p>
+<p>Matrix-powered apps, called Matrix clients, have all the features you'd want and expect from a modern chat app: instant messaging, group chats, audio and video calls, searchable message history, synchronization across all your devices, and more.</p>
+<p>To use a Matrix client, you create an account on a Matrix homeserver.
+Your Matrix homeserver is your hub into the Matrix network.
+It stores your account information and all your conversations.
+You can communicate with people on your own homeserver or people on other homeservers.
+When you communicate with people on other homeservers, your homeserver and the other homeservers involved synchronize the conversation history.
+This allows you to communicate with anyone in the Matrix network seamlessly, without ever thinking about which homeserver they connect to.</p>
+<p>What separates the Matrix protocol from other, similar communication protocols is that you can:</p>
+<ul>
+<li>Communicate with anyone, even if they aren't using Matrix yet.</li>
+<li>Choose where your communication data is stored and who has access to it.</li>
+</ul>
+<h3 id="talk-to-anyone">Talk to Anyone</h3>
+<p>You communicate with people outside of the Matrix network through bridges, which connect previously established communication networks, such as Slack and IRC, to the Matrix network.</p>
+<p>With bridges you don't have to use different apps to talk to different people.
+Whatever Matrix client you choose, you can talk to anyone inside or outside of the Matrix network.
+This bridging is invisible to users outside of the Matrix network. Your friends don't need to switch networks or software.
+They don't even need to know anything about Matrix.</p>
+<h3 id="get-more-choices">Get More Choices</h3>
+<p>Matrix gives you choices for both the software you use to chat and where your communication data is stored.</p>
+<p>Remember that to use Matrix, you need a Matrix client.
+A client can be a web, phone, or desktop app--or even an Internet-connected appliance in your home.
+Think of how you can access your email from Gmail in your browser, Microsoft Outlook on your laptop, or the Mail app on your iPhone.
+With Matrix, you can do the same for messaging, phone, and video calls.</p>
+<p>You can pick any Matrix client, and you can switch at any time.
+Whatever you choose, it'll work with your homeserver.
+Currently, the most widely used Matrix client is <a href="https://element.io/">Element</a>, which has versions available for the web, iOS, Android, macOS, Windows, and more.</p>
+<p>On the homeserver side, Matrix offers choices to both the user and operator of the homeserver.</p>
+<p>Users can decide who runs their homeserver:</p>
+<ul>
+<li>A large organization that provides a public homeserver: For example, the team behind Matrix offers a public homeserver on matrix.org.</li>
+<li>A friend, family, or community group: This could be for a club or professional organization.</li>
+<li>Yourself: You can run the homeserver software on your own computer.</li>
+</ul>
+<p>As a homeserver operator, you can choose your homeserver implementation.
+The team that developed Matrix provides an implementation called <a href="https://matrix.org/docs/projects/server/synapse">Synapse</a>.
+<a href="https://conduit.rs/">Conduit</a>, which is built on Ruma, is another (experimental) option.</p>
+<h3 id="putting-it-all-together">Putting It All Together</h3>
+<p>So far, you've learned about the Matrix protocol, client, and homeserver.
+The following table illustrates how those three components form a relationship similar to email or the web.
+The table shows the protocol each system uses, examples of resources you'd access, and examples of the software used to do it.</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th></th>
+      <th>Web</th>
+      <th>Email</th>
+      <th>Matrix</th>
+    </tr>
+    <tr>
+      <th>Is built on…</th>
+      <td>HTTP</td>
+      <td>IMAP, SMTP</td>
+      <td>HTTP</td>
+    </tr>
+    <tr>
+      <th>You want to access…</th>
+      <td>youtube.com, facebook.com</td>
+      <td>Gmail, Yahoo Mail</td>
+      <td>matrix.org public homeserver</td>
+    </tr>
+    <tr>
+      <th>The provider uses…</th>
+      <td>Apache, Nginx</td>
+      <td>sendmail, postfix</td>
+      <td>Conduit, Synapse, Dendrite</td>
+    </tr>
+    <tr>
+      <th>You use…</th>
+      <td>Chrome, Firefox</td>
+      <td>Gmail web app, Apple Mail</td>
+      <td>Element, Fractal, WeeChat</td>
+    </tr>
+  </table>
+</div>
+<p>Next, read about <a href="/docs/matrix/features/">Matrix features</a>.</p>
+
+    </main>
+</div>
+
+
+</div>
+
+</html>

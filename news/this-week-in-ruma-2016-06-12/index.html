@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-06-12/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-06-12" itemprop="datePublished">2016-06-12</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>In addition to the bulleted highlights listed below, major work was done this week to help the community get involved in Ruma development.
+The Git repository now includes contribution guidelines, as well as a document with a chart detailing all the API endpoints in the Matrix specification and the current status of support for each in Ruma.
+Each endpoint in the chart links to a tracking issue on GitHub, offering a place for contributors to announce their interest in working on the endpoint and to discuss implementation.
+A few additional issues were added to the issue tracker to give additional ideas for ways people interested in contributing can help.
+These issues are listed below in the &quot;contribution opportunities&quot; section.</p>
+<p>Lastly, my partner Leah (who works professionally as a technical writer) and I spent most of the weekend working on a new documentation website for Ruma.
+The site will include Ruma's user guide, as well as a section dedicated to introducing and explaining the concepts of Matrix.
+With the launch of Vector (see &quot;Matrix at large&quot; below) this week, word about Matrix is going to start to spread faster, and Matrix is in dire need of very clear explanations that are targeted at non-technical users.
+We are being extremely careful with the content of this Matrix concept documentation, choosing our terminology, analogies, and examples in a way that won't assume too much about the reader's knowledge and won't overload them with buzzwords without explaining what they mean using words and concepts commonly understood by everyone.
+I'm really excited to launch this new documentation site because I think it's going to be very effective in helping both technical and non-technical people understand what Matrix is, how it works, and why someone would want to use it.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li><code>POST /createRoom</code>: Add support for the room's initial canonical alias.</li>
+<li><code>POST /createRoom</code>: Add support for setting the room's visibility in the server's public room directory.</li>
+<li>Add support for configuration files in TOML and YAML formats.</li>
+<li>Add CONTRIUBTING and STATUS documents as well as revised README content.</li>
+</ul>
+<h2 id="notable-changes-to-www-ruma-io">Notable changes to <code>www.ruma.io</code></h2>
+<ul>
+<li>Revised the website's style in preparation for the documenation sub-site.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/mujx">mujx</a></li>
+</ul>
+<h2 id="contribution-opportunities">Contribution opportunities</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma/issues/66">66</a>: Add test helper for creating a user and returning its access token</li>
+<li><a href="https://github.com/ruma/ruma/issues/67">67</a>: Create test database and run migrations from Rust</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>Two members of the Matrix team were in San Francisco this week for <a href="http://www.decentralizedweb.net/">Decentralized Web Summit</a>.
+The most exciting announcement was that <a href="https://vector.im/">Vector</a>, a slick Matrix client available as a web app, iOS app, and Android app, is now in open beta!
+A blog post, <a href="https://medium.com/@Vector/say-hello-to-vector-2d33b23a787#.5zf8xd93f">Say Hello To Vector!</a> was published alongside the announcement at the conference.
+You can try Vector by chatting with us in the <a href="https://vector.im/beta/#/room/#ruma:matrix.org">room for Ruma</a>!</p>
+<p>On Wednesday evening, I met the Matrix team and some other Matrix enthusiasts in the area for dinner near the Internet Archive's office.
+It was great to meet everyone in person.
+We had some good discussions about Matrix, especially about how to address the risk of spam and abuse in the Matrix network using a reputation system.</p>
+<p>New issues opened for the Matrix specification:</p>
+<ul>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-409">SPEC-409</a>: Enumerate all events created when a room is created</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-411">SPEC-411</a>: Directory list API missing from the spec</p>
+<p>(I later learned this was already reported in <a href="https://matrix.org/jira/browse/SPEC-370">SPEC-370</a>: We need to spec the new /directory/room/list API)</p>
+</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

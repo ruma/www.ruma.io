@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-10-02/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-10-02" itemprop="datePublished">2016-10-02</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>Ruma had some major progress this week.
+We're getting ever closer to the first alpha release.
+Ruma's fantastic community contributed implementations for several new API endpoints, with more on the way.</p>
+<p>On Friday I did my second live stream of Ruma development.
+If you missed it, you can <a href="https://www.youtube.com/watch?v=gApgMPEwvSc">watch the recording</a>.
+In it, I work on a new crate, ruma-client-api, the purpose of which is to separate the request and response data types for each API endpoint from the homeserver so that the same types can be used by client code.
+The general structure of the API has changed since the Friday screencast, and is coming together very nicely now.</p>
+<p>And finally, a milestone was reached with ruma-events by converting the <code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> types from structs to traits, greatly simplifying the overall API, and paving the way for better generic treatment of the different event kinds in the Ruma homeserver.
+Initially I thought it would require language support for <a href="https://github.com/rust-lang/rfcs/pull/1546">fields in traits</a>, but I managed to get almost the same effect with macros.
+At least ergonomic enough that I'm comfortable stabilizing the current API without fields in traits, at least once I verify that it works well in the homeserver code.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for deactivating an account.</li>
+<li>Added support for joining a room.</li>
+<li>Added support for listing the members of a room.</li>
+<li>Cleaned up the way variable URL path parameters are handled, moving all the logic in to Iron middleware, and reducing the volume of code in each API's handler function.</li>
+<li>Squashed all database migrations into a single &quot;prerelease&quot; migration to make it easier for contributors to work on features requiring new tables concurrently, and because there is no need to have more than one migration per released version of Ruma.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-client-api">Notable changes to <a href="https://github.com/ruma/ruma-client-api">ruma-client-api</a></h2>
+<ul>
+<li>Added this new crate to share the request and response types between client and server.</li>
+<li>Overall API designed and types added for about a third of the Matrix client API functionality so far.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li><code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> are now traits, which unifies and simplifies the crate's overall API.</li>
+<li>Enums now implement <code>Display</code> and <code>FromStr</code>.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

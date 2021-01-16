@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>These Weeks in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/these-weeks-in-ruma-2019-12-14/" itemprop="headline">
+            These Weeks in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-12-14" itemprop="datePublished">2019-12-14</time>
+        by
+        <span class="author" itemprop="author">Jonas Platte</span>
+    </small>
+</header>
+
+    <p>There's been steady progress since the last news entry, so I thought I'd write a small progress
+update again.</p>
+<p>These crates saw a new release:</p>
+<ul>
+<li>ruma-api-macros 0.9.0 (with an alpha beforehand)</li>
+<li>ruma-api 0.12.0 (with an alpha beforehand)</li>
+<li>ruma-client-api 0.5.0</li>
+<li>ruma-client 0.3.0-beta.2</li>
+<li>ruma-identifiers 0.14.1</li>
+</ul>
+<h2 id="what-changed">What changed?</h2>
+<p>The biggest thing that changed is that the temporary non-support of server-side usage of ruma-api
+that I wrote about last time has ended. Restoring server-side support also required some changes to
+ruma-client-api, but those were rather minimal because all of the additional logic that deals with
+the client / server side distinction is hidden away in ruma-api(-macros).</p>
+<p>Moreover, ruma-client now has no more dependencies with alpha or beta versions, and will have its
+0.3.0 release soon (pending a small update from hyper). ruma-identifiers now supports historical
+user IDs, which are user IDs can't actually be created on a matrix homeserver because they contain
+invalid characeters, but nevertheless have to be supported because older versions of the
+specification allowed these characters and as such some users still have them in their IDs.</p>
+<h2 id="server-side-support">Server-side support</h2>
+<p>To support fallible deserialization on both ends of the protocol, the request-sending /
+response-receiving side (when dealing with the client-server protocl, this is the client) and the
+request-receiving / response-sending side (the server) now use different types if request or
+response structs contain events. For every <code>Request</code> or <code>Response</code> that contains an event (or
+another struct that contains another struct that contains a <code>Vec</code> of events and such) we now
+generate a corresponding <code>IncomingRequest</code> / <code>IncomingResponse</code>. The non-<code>Incoming</code> structs don't
+use ruma-events' <code>EventResult</code> type, while the <code>Incoming</code> types do.</p>
+<p>For details about how these new structs are generated, see the <a href="https://docs.rs/ruma-api/0.12.0/ruma_api/derive.Outgoing.html">documentation for the new <code>Outgoing</code>
+derive macro</a>.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

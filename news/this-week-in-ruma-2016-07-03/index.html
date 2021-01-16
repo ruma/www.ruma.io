@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-03/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-03" itemprop="datePublished">2016-07-03</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>Three major milestones happened for Ruma this week!</p>
+<ol>
+<li>Support for events, the basic unit of data in Matrix, landed on the master branch.
+This is very important, because it's the foundation for almost all the core functionality of the homeserver.
+The initial implementation of events does not support federation, to keep the scope small, and because the details of federation are still not well specified.</li>
+<li>Ruma's <a href="https://www.ruma.io/docs/">documentation website</a> was launched, with its first guide, the <a href="https://www.ruma.io/docs/matrix/">Introduction to Matrix</a>, which provides a great explanation of Matrix targeted at non-technical users.</li>
+<li>Ruma <a href="https://twitter.com/ruma_io/status/749834912077713409">reached the top of the Hacker News front page</a>.
+Be sure to read the <a href="https://news.ycombinator.com/item?id=12028475">comment thread</a>.</li>
+</ol>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Add support for events.</li>
+<li>Add partial support for additional parameters to the room creation endpoint: <code>name</code>, <code>topic</code>, <code>preset</code>, and <code>invite</code>.</li>
+<li>Create some of the necessary events when a room is created: <code>m.room.create</code>, <code>m.room.name</code>, <code>m.room.topic</code>, <code>m.room.history_visibility</code>, <code>m.room.join_rules</code>, and <code>m.room.member</code>.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <code>ruma-events</code></h2>
+<ul>
+<li>All event types were restructured to include two generic parameters, one for the primary &quot;content&quot; payload, and one for optional &quot;extra content.&quot;
+This was done to support certain events in the specification that have non-standard key-value pairs at the top level of the data structure.</li>
+<li>Remove the <code>EventKind</code> trait.</li>
+<li>Add support for custom event types.</li>
+</ul>
+<h2 id="notable-changes-to-www-ruma-io">Notable changes to <code>www.ruma.io</code></h2>
+<ul>
+<li>Add new documentation site and Introduction to Matrix guide. (Contributed in part by Leah Scampoli.)</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/leahscampoli">Leah Scampoli</a></li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>
+<p><a href="https://matrix.org/jira/browse/SYN-720">SYN-720</a>: Validation of event content from user input</p>
+<p>Note that this is a bug filed against Synapse, not the spec itself.
+This was discovered while working on support for the room creation API endpoint's <code>initial_state</code> parameter.
+Ruma will do proper validation of state events created through this mechanism.</p>
+</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

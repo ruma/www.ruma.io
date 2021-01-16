@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2017-05-14/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2017-05-14" itemprop="datePublished">2017-05-14</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>It's been several months since the last This Week in Ruma.
+There has been some work on Ruma during this time, but development has largely been on hiatus while we wait for the dust to settle on two things:</p>
+<ol>
+<li>Stabilization and release of hyper 0.11 (the tokio-based async rewrite).</li>
+<li>A new version of the Matrix specification that includes the many changes since the current version.</li>
+</ol>
+<p>The former has been in the &quot;nearly done&quot; state for a while now, so we've been doing a bit of development against hyper's master branch.
+As far as I know, no significant API changes are expected at this point.
+The latter has been delayed significantly because the Matrix team has been up to their eyeballs in work on <a href="https://riot.im/">Riot</a>, particularly in squashing issues with end-to-end encryption as they try to move it out of beta.
+While we would like a new spec to help in moving Ruma forward, the Matrix team has our full support on their current priorities, as fully working encryption for messages is simply way more important for the world right now.</p>
+<p>A change in the Ruma project worth noting is that I've decided to end my policy of &quot;no new unstable features,&quot; effectively deprioritizing moving Ruma's crates to stable Rust.
+The simple reaosn for this is that there are still unstable features that change what the ideal API for some of our crates would be.
+Having the best possible API should take priority over which version of Rust is required, especially with how easy it is to install Rust with rustup.</p>
+<p>Personally, I've been more focused on the client-side libraries recently.
+The past week I've made a lot of progress on finalizing and implementing the API for ruma-api, ruma-client-api, and ruma-client.
+In the last update back in February, I mentioned working on a custom derive to make the implementation of Matrix APIs easier.
+That has evolved into a full Macros 2.0 procedural macro that offers a very succinct, declarative API that will make the client libraries much simpler.
+This work is still very much in progress, but having finally figured out an approach for this is a big milestone in having a usable Matrix client library for Rust.
+We're excited to see what Rust developers build with it when it's ready.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added the <code>/rooms/:room_id/kick</code> API endpoint.</li>
+<li>Added initial implementation for the room states in the <code>/sync</code> API endpoint.</li>
+<li>Corrected the structure of authentication parameters in login requests.</li>
+<li>Fixed the behavior of the <code>next_batch</code> token when there are no new events for the <code>/sync</code> API endpoint.</li>
+<li>Added basic implementation for the pushers API endpoint.</li>
+<li>Return empty JSON objects as the default response for Riot compatibility.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-api">Notable changes to <a href="https://github.com/ruma/ruma-api">ruma-api</a></h2>
+<ul>
+<li>Revised the API into a simpler form that specifies conversions between hyper's types and its own.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Published versions 0.10.0 and then 0.11.0 with small changes, most notably updating to serde 1.0.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Published versions 0.7.0 and then 0.8.0 with small changes, most notably updating to serde 1.0.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/briansmith">Brian Smith</a></li>
+</ul>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Interested in getting involved with Ruma?
+Here are some good places to start:</p>
+<p>Previously featured and still available:</p>
+<ul>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/157">Sending a m.room.member event again after changing avatar or displayname</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma-client-api/issues/10">Bikeshed: Module names</a></li>
+<li>[discussion] <a href="https://github.com/ruma/ruma/issues/110">Implementing Event storage/search with a timeseries database or a lucene indexed database</a></li>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/107">Implement a rate-limiting middleware</a></li>
+</ul>
+<p>There are also plenty of API endpoints that still need to be implemented.
+Check the <a href="https://github.com/ruma/homeserver/blob/master/STATUS.md">status document</a> for a list.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

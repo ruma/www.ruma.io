@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-ends-2020/" itemprop="headline">
+            Google Summer of Code Wrap-up
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-08-28" itemprop="datePublished">2020-08-28</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>Wow the summer has flown by, it feels like just yesterday I was learning how to
+rebase and what exactly it is Ruma does. I exaggerate slightly, but it is a big
+library with lots of public API surface. I have learned more in the last few
+months than in two years of school. I have been able to observe and participate
+in a project with a community growing around it, been a part of discussions
+about design and best practices, given and received numerous code reviews as
+well as learned the process of addressing the feedback, and working from a
+specification. In short, this has been an amazing opportunity to gain 
+experience in all the things that are hard to obtain in a classroom.</p>
+<p>My project goal was to improve the existing macros in ruma-events-macros and
+ruma-api-macros. It became clear early on that this would include some major
+API changes and that improving the macros as they were was pointless without
+also moving to a new public API. While improving the durability and
+readability of the macro code I also rewrote entire sections to accommodate
+the new design.</p>
+<p>A quick overview of the Matrix protocol for reference: a client sends content
+that is interpreted by the server as events. The server distributes those
+events out to other clients and other servers (the server case is known as
+federation). Ruma groups these events by kind Message, State, Ephemeral,
+ToDevice and Basic which are represented as generic structs (<code>StateEvent&lt;C&gt;</code>).
+Each event kind needs to be able to hold many different content types, for
+state events there is room creation, room name, and membership events to name a
+few. Using the macros, enums are generated to represent all state event
+possibilities, so a variant for membership, room name, etc. These types exist
+to support the core API request and response types for each endpoint that is
+defined by the Matrix specification.</p>
+<h2 id="gsoc-starts-and-i-start-with-ruma-events">GSoC Starts and I start with ruma-events</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma-events/pull/85">remove old ruma-events macros</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/86">start work for event content derive, move to generic <code>Event</code> structs</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/101">collect all content types into enum</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/107">add more types, making sure the macro works</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/108">work on <code>Event</code> custom macro derive</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/111">remove <code>raw</code> modules and <code>FromRaw</code> trait</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/119">add each events enum</a></li>
+<li><a href="https://github.com/ruma/ruma-events/pull/122">add trybuild tests for <code>ruma-events</code></a></li>
+</ul>
+<h2 id="more-work-on-ruma-events-now-a-part-of-the-new-mono-repo">More work on ruma-events, now a part of the new mono-repo</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma/pull/52">deserialization optimization for Any*Event, and benchmarking to verify</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/68">reverting the removal of enum_enum macro, learning a lot of git along the way</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/69">it took me awhile but I got the hang of it, only one review issue!</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/97">add accessor methods to the enums, making them much nicer to use</a></li>
+</ul>
+<h2 id="work-on-ruma-client-api">Work on ruma-client-api</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma/pull/104">refactoring the <code>Api::to_tokens</code> code helped me get my head around this crate</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/105">notice my commit messages are starting to looking better</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/108">not everything works out...</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/109">but you get it eventually</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/111">deep dive into rust features, I learned a lot about them</a></li>
+</ul>
+<h2 id="back-to-ruma-events">Back to ruma-events</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma/pull/130">a ruma events and client-api rename</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/138">add code to generate <code>redact</code> method in event_enum!</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/139">adding to existing code without breaking everything is hard</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/155">converting to and from the rusty way</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/179">I love writing proc_macros, this was a fun one! Adding lifetimes in the req/resp macro</a></li>
+</ul>
+<h2 id="continuing-maintenance">Continuing maintenance</h2>
+<ul>
+<li><a href="https://github.com/ruma/ruma/pull/190">quality of life stuff, the day to day work of a maintainer</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/201">allow the internal macros to be used outside of the ruma crate more easily</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/213">adding small needed features to the macros</a></li>
+<li><a href="https://github.com/ruma/ruma/pull/234">good ol' fashioned closing issues!</a></li>
+</ul>
+<p>One of my personal goals was to become more familiar with git. With the help
+of my mentor I now feel more confident using this tool that is so essential to
+developers. I became fairly adept at merging, rebasing, and navigating all the
+headaches that come with that. I learned plenty of new commands. A few
+highlights: <code>cherry-pick</code> and specific uses of <code>reset</code> to avoid copy-pasting
+fixes and adding more commits. I used the <code>reset</code> command to craft good
+commits, splitting work into appropriate chunks. I am glad that I had the
+opportunity to hone my git skills. I feel like I have accomplished my goal and
+then some!</p>
+<p>I am proud of the work that I have done: Being part of moving ruma-events much
+closer to the <code>0.22</code> release and creating macros to generate types specific to
+the Matrix specification. Working with the community that has grown around Ruma
+has been rewarding and I plan on sticking around.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update4-2020/" itemprop="headline">
+            The End is Nigh
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-07-16" itemprop="datePublished">2020-07-16</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>This week in the ruma/matrix Google Summer of Code project, I worked on refactoring both <code>ruma-api</code> and <code>ruma-events</code>. After moving some of the larger chunks of the <code>ruma_api_macro::api::Api::to_tokens</code> method to helper functions, I spent time removing repetition from the <a href="https://github.com/ruma/ruma/pull/109"><code>Request/Response</code></a> code generated by the <code>ruma_api!</code> macro. For <code>ruma-events</code>, the <a href="https://github.com/ruma/ruma/pull/121">input parsing</a> was changed to only allow valid names for the <code>Any*Event</code> enums. Altering the input parsing had the added benefit of replacing all of the string comparison and manipulation with strongly typed comparison and manipulation.</p>
+<p>The final few issues to be resolved before the next crates.io release for <code>ruma-events</code> can happen are related to redacted events. Support for <a href="https://github.com/ruma/ruma/pull/114">redacted events</a> was added to the <code>Any*Event</code> enums, they now have redacted variants of each event kind. A few follow-up PR's have been merged to fully integrate redacted events into <code>ruma-events</code>, fixing specific event <a href="https://github.com/ruma/ruma/pull/128">deserialization issues</a> and splitting the <a href="https://github.com/ruma/ruma/pull/135"><code>UnsignedData</code></a> struct into <code>Unsigned</code> and <code>RedactedUnsigned</code>.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update3-2020/" itemprop="headline">
+            Successful Updates
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-26" itemprop="datePublished">2020-06-26</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>This week in the ruma/matrix Google Summer of Code project, ruma-events was made ready for use! After adding stripped and sync event generation to the <a href="https://github.com/ruma/ruma/commit/fdf87a38a219933ffe99b17baf87841a79702f28"><code>event_enum!</code> macro</a> there were only a few small tweaks needed to try it out in some dependent rust crates. I spent a few days converting <a href="https://github.com/matrix-org/matrix-rust-sdk/pull/63">matrix-rust-sdk</a> to use the ruma-monorepo. Since ruma is used on both client and server-side, I also opened a PR to update <a href="https://git.koesters.xyz/timo/conduit/pulls/133">Conduit</a>, a homeserver implementation written in Rust. To test that everything worked together, I updated <a href="https://github.com/DevinR528/rumatui/commit/1ae8776f9a59c297c8c9b2287f7c830ab67302b1">rumatui</a>, my command-line client written in rust.</p>
+<p>Then I could test that Conduit sent, and matrix-rust-sdk received the new ruma events successfully. While updating, I felt the pain of not having accessor methods for the <code>Any*Event</code> enums to get at the event fields held within. I have opened a <a href="https://github.com/ruma/ruma/pull/97">pull request</a> to add the generation of these methods to the <code>event_enums!</code> macro. Hopefully, the Conduit and matrix-sdk PR's will be merged and the ruma monorepo can be tested in the wild!</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update2-2020/" itemprop="headline">
+            Oops, Now Revert
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-19" itemprop="datePublished">2020-06-19</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>This week in ruma-events' Google Summer of Code project, after trying out the new <code>Any*Event</code> enums <a href="https://github.com/DevinR528/matrix-rust-sdk/pull/2"><code>matrix-rust-sdk</code></a>, we found a few big flaws. There was no easy way to go from <code>StateEvent&lt;AnyStateEventContent&gt;</code> to <code>StateEvent&lt;SpecificEventContent&gt;</code>, the other issue was one could create a <code>StateEvent</code> with differing <code>content</code> and <code>prev_content</code> fields using the <code>AnyStateEventContent</code> enum. The <a href="https://github.com/ruma/ruma/pull/68">0.22 ruma-events</a> will be similar to the existing API; each event type has a corresponding event enum variant.</p>
+<pre style="background-color:#f5f5f5;">
+<code class="language-rust" data-lang="rust"><span style="color:#668f14;">pub enum </span><span style="color:#c23f31;">AnyStateEvent </span><span style="color:#1f1f1f;">{
+    RoomMember(StateEvent&lt;MemberEventContent&gt;),
+    RoomAliases(StateEvent&lt;AliasesEventContent&gt;),
+    </span><span style="color:#7f8989;">// ...
+</span><span style="color:#1f1f1f;">}
+</span></code></pre>
+<p>There were a few minor fixes during the week also. Unknown field deserialization is <a href="https://github.com/ruma/ruma/pull/57">fixed</a>, allowing deserialization of a JSON blob that has extra fields which are ignored. <a href="https://github.com/ruma/ruma/pull/59">Custom events</a> are now present in the <code>Any*EventContent</code> enums, although now they have to be moved up to be included in <code>Any*Event</code> enums. <a href="https://github.com/ruma/ruma/pull/52">Benchmarks</a> for deserialization have been added and used to increase performance.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update-2020/" itemprop="headline">
+            Breaking ruma-events
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-11" itemprop="datePublished">2020-06-11</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>This week in ruma-events' Google Summer of Code project, I was able to finish the macros needed to generate the event content enums and trait implementations required for events. I started by defining the <a href="https://github.com/ruma/ruma-events/pull/107">generic event structs</a> (state, message, etc.) and manually writing the <code>Serialize</code> and <code>Deserialize</code> implementations. Over the next few days, this was moved into a custom derive macro called <a href="https://github.com/ruma/ruma-events/pull/108"><code>Event</code></a>. The derive now implements all necessary traits with appropriate bounds, so a <code>StateEvent&lt;C&gt;</code> can not contain any ephemeral event content and so forth. I have removed the <a href="https://github.com/ruma/ruma-events/pull/111"><code>raw</code></a> mod and related <code>FromRaw</code> and <code>TryFromRaw</code> traits, moving the validation into the deserialization and constructor for the few types that needed it. On the <a href="https://github.com/ruma/ruma-events/pull/106">event content</a> side of things, a function like procedural macro was used to allow declaring the enum using Matrix event type identifiers.</p>
+<pre style="background-color:#f5f5f5;">
+<code class="language-rust" data-lang="rust"><span style="color:#a2a001;">event_content_enum! </span><span style="color:#1f1f1f;">{
+    </span><span style="color:#7f8989;">/// Any message event.
+</span><span style="color:#1f1f1f;">    name: AnyMessageEventContent,
+    events: [
+        </span><span style="color:#d07711;">&quot;m.call.answer&quot;</span><span style="color:#1f1f1f;">,
+        </span><span style="color:#d07711;">&quot;m.room.message&quot;</span><span style="color:#1f1f1f;">,
+        </span><span style="color:#7f8989;">// ...
+    </span><span style="color:#1f1f1f;">]
+}
+</span><span style="color:#7f8989;">// Produces
+</span><span style="color:#668f14;">pub enum </span><span style="color:#c23f31;">AnyMessageEventContent </span><span style="color:#1f1f1f;">{
+    CallAnswer(CallAnswerEventContent),
+    RoomMessage(MessageEventContent),
+}
+</span></code></pre>
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+    </div>
+    <span class="page-number">1 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;2&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

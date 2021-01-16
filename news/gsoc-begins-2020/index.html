@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>Ruma gets in on Google Summer of Code | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-begins-2020/" itemprop="headline">
+            Ruma gets in on Google Summer of Code
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-01" itemprop="datePublished">2020-06-01</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+    <p>Thanks to GSoC and the continued help of Jonas Platte, Ruma's GSoC mentor, there is a new contributor... me! My name is Devin Ragotzy, a University student from Michigan. I was chosen to help contribute to the macro code of ruma-events and ruma-api.</p>
+<h2 id="ruma-community-bonding">Ruma Community Bonding</h2>
+<p>Before the official coding period began on June 1st, a large breaking change started taking shape for the upcoming release of ruma-events <a href="https://github.com/ruma/ruma-events/issues/82">0.22.0</a>. Jonas, I, and others have been hard at work, replacing the previous event declaration macro with a set of derive macros and generic event types, as well as getting rid of the boilerplate required for event enums (the types currently found under <code>ruma_events::collections</code>). The new types will be able to express JSON events from a Matrix server with more accuracy.</p>
+<h2 id="planned-work-for-ruma-api">Planned work for ruma-api</h2>
+<p>Once the macros in ruma-events are implemented, I will switch gears to work on ruma-api.</p>
+<ul>
+<li>First, add a few tests to ensure the changes I make do not break important functionality
+<ul>
+<li>Test macro code using <code>macrotest</code> and/or <code>trybuild</code> which test errors or expansions respectively</li>
+</ul>
+</li>
+<li>Allow more code sharing between <code>Request</code> and <code>Response</code> processing inside the macro</li>
+<li>Refactor <code>ruma_api!</code>, breaking up the large block of code in <code>Api::to_tokens</code></li>
+<li>Document any refactored or new code as I work</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-05-15/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-05-15" itemprop="datePublished">2016-05-15</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>There were only a few commits this week, but there was very good progress on the test suite and some internals.
+After trying several ways to work around libtest's lack of global setup and teardown hooks, and some issues with the way each test was running an Iron server in a thread keeping database connections open forever, I decided to move the setup and teardown outside of the Rust code itself.
+I explored the code of libtest and libsyntax and got to understand how it works and some of its limitations.
+I might be creating an RFC for Rust soon to give the programmer independent control of the test collector and the test runner, which are currently bound together under the <code>--test</code> flag (AKA <code>--cfg test</code>.)</p>
+<p>Now the PostgreSQL Docker container is started and stopped, and database migraitons are run from a shell script which wraps <code>cargo test</code>.
+The Iron app was similarly decoupled from the Iron server, so that integration testing can be done with <code>iron-test</code> without ever starting an actual server.
+Finally, I made some more progress on Matrix's user-interactive authentication system and got part of the <code>/login</code> endpoint completed.
+I expect it to be fully functional by next week.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>
+<p>Cleaned up test suite</p>
+<p>Complicated setup and teardown extracted from the Rust code.
+Test cases moved into the modules they test, rather than within a <code>tests</code>-directory-style module in <code>src/test</code>.</p>
+</li>
+<li>
+<p>Introduced <code>iron-test</code> to facilitate testing</p>
+<p>The test suite now has a single support type, <code>test::Test</code>, which does per-test setup and teardown via RAII and provides succinct helper methods for making requests and testing the responses.</p>
+</li>
+<li>
+<p>Initial version of the <code>/login</code> API added.</p>
+<p>The logic is all there, but there are some places where deserialization of the types used in the request body must be manually implemented because they differ in structure from what Serde can do with its custom derive attributes.</p>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>The sections about authentication, registration, and login in the spec have seen some very nice improvements recently, but there are still some parts that are misleading or unclear.
+I'm in the process of getting a few things clarified that will help finally nail down how these various APIs should work.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-05-08/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-05-08" itemprop="datePublished">2016-05-08</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>I'm back from my vacation to Montreal and Quebec City (which are lovely and you should visit) and working on Ruma again!
+Although development this past week was hindered a bit by another round of breaking changes to the Rust compiler's <code>libsyntax</code> crate, which affects Ruma's use of <code>serde</code> and <code>diesel</code>, there have been a few changes to Ruma and some movement on the Matrix specification.</p>
+<p>For anyone interested in following This Week in Ruma regularly, it is now available via an <a href="/news/feed.atom">Atom feed</a>.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>
+<p>New CLI subcommand, <code>ruma secret</code></p>
+<p>This new subcommand generates and prints a secure random value suitable as the <code>macaroon_secret_key</code> in the Ruma config file.
+This value is used as the secret key for creating user access tokens using <a href="https://github.com/cryptosphere/rust-macaroons">Macaroons</a>.</p>
+</li>
+<li>
+<p>Interactive authentication removed from <code>/register</code></p>
+<p>At least for now, user registration will not require any sort of external credential verification.
+This area of the spec is currently less stable, so implementing it will wait until it makes more sense.</p>
+</li>
+<li>
+<p>Simplified structure for crates, modules, and tests</p>
+<p>The integration tests have been moved into the <code>src</code> directory so that it's not necessary to split <code>ruma</code> into a binary and a library just so the integration tests can link to the library.
+This makes Cargo.toml and various <code>cargo</code> commands simpler.</p>
+</li>
+<li>
+<p>Swagger data source</p>
+<p>By default, <code>ruma</code> now serves a JSON structure at <code>/ruma/swagger.json</code> that can be loaded by <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> to display the full Matrix client-server specification that will eventually be implemented by Ruma.</p>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>There has been a bunch of activity on the spec recently.
+It appears that the Matrix team is preparing for a stable 1.0 release of the client-server API spec.
+A branch I worked on for the spec landing page of the specification was also merged.
+Those changes improve the organization of the information to make several things clearer to first-time readers.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-04-24/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-04-24" itemprop="datePublished">2016-04-24</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>I said last week that there wouldn't be an update this week because I'm on vacation, but as it turns out a bit of progress was made before I left and I have a few minutes to make the update while my partner writes postcards to send back home.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>
+<p>Add initial stub implementation of user-interactive authentication.</p>
+<p>Matrix's interactive auth system is in a bit of a transition, so there has been lots of investigation and discussion with the core team to learn how it works.
+I was able to make some good progress on how it will be represented as Rust code, but there are many more changes to come.
+I hope to have &quot;dummy&quot; authentication working soon.</p>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>Many of my questions about the specification have been answered, thanks to Richard van der Hoff of the Matrix core team.
+A few issues are ongoing, but all of this discussion will be very helpful in improving the specification and clarifying some flows so that Ruma can implement them.</p>
+<p>Specifically:</p>
+<ul>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-385">SPEC-385</a>: PUT requests should use the JSON body for all request parameters</p>
+<p>Came to agreement that, at least for the <code>/register</code> API endpoint, request parameters related to the registration should not be split arbitrarily across the query string and the body of the request.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-343">SPEC-343</a>: Explain the purpose of refresh tokens</p>
+<p>Clarified why Matrix authentication involves both &quot;access tokens&quot; and &quot;refresh tokens,&quot; where implementations are free to make their own choices, and the trade offs involved.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-313">SPEC-313</a>: Provide a high level overview of the different event syncing API endpoints</p>
+<p>Ongoing discussion of which APIs are used by the client to get events, and how best to update the spec to make recent API deprecations more clear.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-310">SPEC-310</a>: Consider renaming &quot;state key&quot; to &quot;subtype&quot; and making it optional</p>
+<p>Ongoing discussion of the semantics of Matrix's &quot;state events,&quot; as well as discussion about how to balance the quality of the spec with the need to make progress on implementations.</p>
+</li>
+<li>
+<p><a href="https://matrix.org/jira/browse/SPEC-308">SPEC-308</a>: Authentication API is unclear/misleading</p>
+<p>Ongoing discussion about how the user-interactive authentication system relates to specific API endpoints that use it, like <code>/register</code> and <code>/login</code>.</p>
+</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-04-17/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-04-17" itemprop="datePublished">2016-04-17</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>Greetings! My name is Jimmy Cuadra and I am the developer of Ruma.
+This is the first post in a new series of updates about the ongoing progress of Ruma.
+It roughly follows the pattern of weekly newsletters for other projects in the Rust ecosystem, such as <a href="https://this-week-in-rust.org/">This Week in Rust</a>, <a href="https://blog.servo.org/">This Week in Servo</a>, and <a href="http://www.redox-os.org/news/">This Week in Redox</a>.
+I am doing this for a few reasons:</p>
+<ul>
+<li>To keep myself motivated to make progress on Ruma every week.</li>
+<li>To promote interest in Ruma, Matrix, and Rust.</li>
+<li>To provide interested parties in a way to keep track of the project's development.</li>
+<li>To provide interested parties opportunities to provide feedback and contribute.</li>
+</ul>
+<p>Feedback is appreciated via GitHub issues, tweets, and comments on social media websites.</p>
+<p>For the time being, I am not promising a post every single Sunday, since I am the project's sole contributor at this point, and I may not be available to work on it every single week.
+That said, Ruma is a big priority for me and I expect missed posts to be the exception rather than the rule. Notably, there will not be an update next week, as I will be on vacation in Montreal!</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Add support for full stack integration tests.</li>
+<li>Implement access tokens using <a href="https://crates.io/crates/macaroons/">macaroons</a>.</li>
+<li>Respond with appropriate errors when a guest operation is attempted.
+For now, Ruma does not support Matrix guest users.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>This week I had a good discussion with some of the Matrix core team members about the status of the Matrix specification and the role it plays in relation to Synapse, the homeserver developed by the Matrix team.
+Synapse is described as a reference implementation of the Matrix spec, but after several months working on developing Ruma against the spec, I think it is more appropriate to say that Synapse is an experimental project that serves as a proving ground for what will eventually end up in the Matrix spec.
+In other words, Synapse could not currently be recreated from only the information contained in the spec, as it contains a great deal of behavior that is not represented accurately or at all in the spec itself.
+This is not a bad thing, but having some clarity on the exact purpose Synapse fulfills will be important in thinking about how best to develop and maintain the spec.</p>
+<p>Obviously, my perspective on Matrix is that of an implementor, and so the spec is my concern over any details of Synapse.
+The fact that Matrix has an open specification is one of the most important things that sets it apart from other attempts at a next-generation chat platform—especially the various &quot;open source Slack clones&quot; that have sprung up in the last year or so.
+As a result of our discussion on the topic, I've decided to put more work into helping the Matrix team improve the spec, even if it means going slower on the development of Ruma.
+I think my perspective as a developer attempting to implement an interoperable homeserver from the spec alone will be very valuable in filling out the gaps in the spec.
+I am exactly its target audience!</p>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;9&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">10 / 10</span>
+    <div class="next">
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

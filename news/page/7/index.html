@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-09-25/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-09-25" itemprop="datePublished">2016-09-25</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>On Friday, I live streamed myself working on Ruma for the first time.
+I tweeted about it from my <a href="https://twitter.com/jimmycuadra">personal account</a> and mentioned it in <a href="https://matrix.to/#/#ruma:matrix.org">#ruma:matrix.org</a>, but otherwise didn't publicize it.
+A few people watched and helped work out the kinks with audio and video quality.
+(Thank you to those who watched!)
+I walked through the API endpoint for creating message events, explaining more or less line by line how the code works, then worked on implementing the API endpoint for creating state events.
+The people who watched gave me good feedback, and I had a good time doing it, so I think I'll start to stream some of my Ruma development regularly.
+It will be at 1:00 PM Pacific Time on my <a href="https://www.twitch.tv/jimmy_cuadra">Twitch channel</a>.
+I will start tweeting about it from <a href="https://twitter.com/ruma_io">Ruma's Twitter account</a> to remind everyone.
+I'd love to get some questions during the stream, so if you're interested in learning about Matrix, Rust, or both, please come watch and tell me what you want to know!</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added initial support for the state event creation API endpoint.</li>
+<li>Filled in missing functionality and fixed a few issues with the room alias API endpoints, which checks those off the list completely.</li>
+<li>A new contributor is working on the API endpoint for joining a room, and in the process added a new Iron middleware for extracting a <code>ruma_identifiers::RoomId</code> from the URL path parameter wherever it's required.</li>
+<li>A small quality of life fix: <code>script/cargo</code> now passed the value of <code>RUST_LOG</code> to the Docker environment when developing.</li>
+<li>The project's README now includes some more information about how to determine which version of nightly Rust Ruma is built against for those not using Docker for development.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/farodin91">Jan Jansen</a></li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-09-18/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-09-18" itemprop="datePublished">2016-09-18</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Apologies for the lack of updates the last two weeks!
+Two weeks ago I had family visiting over the weekend and last weekend I was in Portland for the first ever RustConf, which was fantastic!</p>
+<p>In addition to the changes below, I've been working on transaction support for the message event creation API.
+It looks like it's going to require a few features that are not yet supported by Diesel: <code>SET TRANSACTION</code> and tables with composite primary keys.
+These are already on the roadmap for Diesel, so more progress will be made on this front soon.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Some changes to error handling to be more ergonomic, provide better user-facing error messages, and to follow Rust conventions better.</li>
+<li>Added information to the project's README about how to develop without Docker.</li>
+<li>Added integration tests for the message event creation API, which uncovered a bug that is now fixed.</li>
+<li>The room alias creation API now correctly returns a 409 HTTP status code if the alias already exists.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/jplatte">Jonas Platte</a></li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li>Talked with Niko Matsakis at RustConf and concluded that the functionality proposed in <a href="https://github.com/rust-lang/rfcs/pull/1546">RFC 1546</a> will be necessary for ruma-events to define the different kinds of Matrix events as traits instead of structs.
+I added a somewhat rambly explanation of this in the comments on the RFC.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>The Matrix client Vector has come out of beta and has been rebranded as <a href="https://riot.im/">Riot</a>!
+End-to-end encrypted messages are finally here!</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-08-28/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-08-28" itemprop="datePublished">2016-08-28</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Recently, types from the ruma-identifiers crate were integrated into ruma-events and ruma, so that values representing a Matrix ID can guarantee some important invariants.
+Previously these values were just strings.
+There was still a source of confusion and errors in that the ID types had to be converted to and from strings for the structs that represent database records using the Diesel ORM.
+To fix this, I added the necessary implementations to ruma-identifiers (under the &quot;diesel&quot; feature) so that the ID types can serve directly as the database columns' data types.
+Of course, these are still stored as text in the database, but the conversion happens only during data serialization and deserialization, and so cannot be broken by application logic.
+This was a pretty hairy change and it took a while to get it all working and to get the test suite updated and passing.
+Big thanks to Sean Griffin (author of Diesel) for helping me figure out how to achieve this.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Increase the portability of the Cargo wrapper script.</li>
+<li>Use ruma-identifiers ID types for relevant database columns.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Crate version 0.4.0 and then 0.4.1 were released, adding Diesel integration and a bug fix for case-sensitivity in user IDs.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/SShrike">Severen Redwood</a></li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li>Sean Griffin shared <a href="https://gist.github.com/sgrif/92809819185a4077e919aaf0a607c6ef">some details</a> of generic implementations that don't work right now, but ideally could help make it easier for apps to create their own custom Diesel data types.</li>
+<li>An important step for the future prospects of moving Ruma to stable Rust, the <a href="https://github.com/rust-lang/rust/pull/35957">implementation for macros 1.1</a> will land soon.
+This will allow Diesel and Serde to use custom derive without requiring nightly features, which is one of the main reasons Ruma targets nightly Rust.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-08-21/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-08-21" itemprop="datePublished">2016-08-21</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Apologies for the missed update last week!
+I was sick and didn't get a chance to write it.
+However, there was work on the project last week.
+I will just include those changes in this update.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Previous work to update Diesel and Serde to the latest versions have been completed.</li>
+<li>Ruma now uses the types from <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a> to represent Matrix IDs instead of strings.</li>
+<li>Ruma now uses the latest version of <a href="https://github.com/ruma/ruma-events">ruma-events</a> which also uses ruma-identifiers.</li>
+<li>The Docker Compose file now locks the Ruma development image to a specific version, so breaking changes to the image are now coordinated with Ruma.
+As part of the same change, the image is now locked to a specific version of the nightly compiler.</li>
+<li>Database migrations are now embedded in the ruma binary, which means a check out of the source code is no longer necessary.</li>
+<li>Add initial support for the message event creation API.
+This is a big milestone and one of the core APIs that makes Matrix work!</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Added simple type aliases for custom events of each kind (basic, room, and state events).</li>
+<li>I'm experimenting again with a version of the API where the event kinds are traits instead of generic structs.
+They really feel like they should be traits, but the actual usage pattern for the events in the main ruma application may not work well like this.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Crate version 0.3.0 was released, which implements <code>Clone</code> for the ID types and <code>Copy</code> for the error type.</li>
+<li>I'm working on a change that would allow the ID types to be used directly as struct fields for Diesel table types.
+Right now it seems like more trouble than it's worth, but I'm following the issue on <a href="https://github.com/diesel-rs/diesel/issues/348">user-defined <code>FromSql</code>/<code>ToSql</code> types</a>.</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li>Paul Evans of the Matrix team is working on testing Ruma with <a href="https://github.com/matrix-org/sytest">SyTest</a>, a blackbox integration testing framework for Matrix homeservers.
+Even though few of the APIs are complete in Ruma so far, there are already a few tests passing!</li>
+<li><a href="https://matrix.org/jira/browse/SPEC-442">SPEC-442</a>: Explain requirements and guarantees around transaction IDs</li>
+<li><a href="https://matrix.org/jira/browse/SPEC-444">SPEC-444</a>: Add an API for getting auth flows
+The May 22, 2016 news update mentioned that Vector and Synapse use unspecified APIs for negotiating authentication flows, but an issue was never filed for improving that.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li>Starting to think about how permissions checks will work in Ruma, I opened an issue for <a href="https://github.com/diesel-rs/diesel/issues/408">transaction isolation support</a> in Diesel as a possible way to prevent ToCToU errors.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-08-07/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-08-07" itemprop="datePublished">2016-08-07</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>This week I began working on upgrading the libraries used by Ruma.
+In particular, Diesel and Serde have new minor versions (which prior to 1.0 are effectively major versions.)
+I'm also working on integrating ruma-identifiers and the recent round of changes to ruma-events back into Ruma.
+Because of library changes, there are a lot of code updates needed.
+I got the compiler errors down from about 60 to about 10, but there are a few blocking issues to fix the rest.
+These are noted in the section on Rust below.</p>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Replace macro for enum implementation with more straightforward usage of Serde annotations where possible.
+This means that <code>Display</code> and <code>FromStr</code> are no longer implemented for these types, but they may not be used by Ruma anyway.
+They'll be added back if and when there is an actual need.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/diesel-rs/diesel/pull/394">diesel-rs/diesel#394</a> Remove the <code>Copy</code> constraint from <code>Identifiable</code>.
+In Diesel 0.7.0, struct fields representing a database table's primary key must be <code>Copy</code>.
+Because strings are used for this in Ruma, this PR must be merged in order to avoid a bunch of otherwise unnecessary newtypes in Ruma.</li>
+<li><a href="https://github.com/iron/body-parser/pull/72">iron/body-parser#72</a>: Bump Serde to 0.8.
+Needed due to version conflicts with <code>serde_json::Value</code>.</li>
+</ul>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;6&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">7 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;8&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

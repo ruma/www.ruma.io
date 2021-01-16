@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-09-25/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-09-25" itemprop="datePublished">2016-09-25</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>On Friday, I live streamed myself working on Ruma for the first time.
+I tweeted about it from my <a href="https://twitter.com/jimmycuadra">personal account</a> and mentioned it in <a href="https://matrix.to/#/#ruma:matrix.org">#ruma:matrix.org</a>, but otherwise didn't publicize it.
+A few people watched and helped work out the kinks with audio and video quality.
+(Thank you to those who watched!)
+I walked through the API endpoint for creating message events, explaining more or less line by line how the code works, then worked on implementing the API endpoint for creating state events.
+The people who watched gave me good feedback, and I had a good time doing it, so I think I'll start to stream some of my Ruma development regularly.
+It will be at 1:00 PM Pacific Time on my <a href="https://www.twitch.tv/jimmy_cuadra">Twitch channel</a>.
+I will start tweeting about it from <a href="https://twitter.com/ruma_io">Ruma's Twitter account</a> to remind everyone.
+I'd love to get some questions during the stream, so if you're interested in learning about Matrix, Rust, or both, please come watch and tell me what you want to know!</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added initial support for the state event creation API endpoint.</li>
+<li>Filled in missing functionality and fixed a few issues with the room alias API endpoints, which checks those off the list completely.</li>
+<li>A new contributor is working on the API endpoint for joining a room, and in the process added a new Iron middleware for extracting a <code>ruma_identifiers::RoomId</code> from the URL path parameter wherever it's required.</li>
+<li>A small quality of life fix: <code>script/cargo</code> now passed the value of <code>RUST_LOG</code> to the Docker environment when developing.</li>
+<li>The project's README now includes some more information about how to determine which version of nightly Rust Ruma is built against for those not using Docker for development.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/farodin91">Jan Jansen</a></li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

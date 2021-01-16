@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-08-07/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-08-07" itemprop="datePublished">2016-08-07</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>This week I began working on upgrading the libraries used by Ruma.
+In particular, Diesel and Serde have new minor versions (which prior to 1.0 are effectively major versions.)
+I'm also working on integrating ruma-identifiers and the recent round of changes to ruma-events back into Ruma.
+Because of library changes, there are a lot of code updates needed.
+I got the compiler errors down from about 60 to about 10, but there are a few blocking issues to fix the rest.
+These are noted in the section on Rust below.</p>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Replace macro for enum implementation with more straightforward usage of Serde annotations where possible.
+This means that <code>Display</code> and <code>FromStr</code> are no longer implemented for these types, but they may not be used by Ruma anyway.
+They'll be added back if and when there is an actual need.</li>
+</ul>
+<h2 id="rust-at-large">Rust at large</h2>
+<ul>
+<li><a href="https://github.com/diesel-rs/diesel/pull/394">diesel-rs/diesel#394</a> Remove the <code>Copy</code> constraint from <code>Identifiable</code>.
+In Diesel 0.7.0, struct fields representing a database table's primary key must be <code>Copy</code>.
+Because strings are used for this in Ruma, this PR must be merged in order to avoid a bunch of otherwise unnecessary newtypes in Ruma.</li>
+<li><a href="https://github.com/iron/body-parser/pull/72">iron/body-parser#72</a>: Bump Serde to 0.8.
+Needed due to version conflicts with <code>serde_json::Value</code>.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

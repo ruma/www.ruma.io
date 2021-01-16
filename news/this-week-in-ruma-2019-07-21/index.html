@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2019-07-21/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-07-21" itemprop="datePublished">2019-07-21</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>This week I'd like to officially welcome <a href="https://github.com/jplatte">Jonas Platte</a> as a member of the Ruma team.
+Jonas has been involved in the project for a long time and has provided many significant contributions, both via code and via discussions about the project's design.
+Jonas is the original author of ruma-gtk, a graphical Matrix client built on ruma-client, which later became <a href="https://github.com/fest-im/fest">Fest</a>, which in turn was forked to create <a href="https://wiki.gnome.org/Apps/Fractal">Fractal</a>.
+Thank you very much for all your work, Jonas!</p>
+<p>A new addition to the website this week is the <a href="/contributing/">how to contribute</a> page, which offers an entry point for anyone interested in contributing to the project's software.
+Thank you to everyone who has expressed interest in contributing in the past (and for everyone who will in the future!)
+Hopefully this guide will help you get started and give you some ideas for how to help.</p>
+<p>On several occasions I've been asked if there is a way to donate financially to the project.
+I'm happy to report that Ruma now <a href="https://liberapay.com/ruma/">accepts donations via Liberapay</a>.
+Donations to the project will be divided amongst team members, which as of today consists of only Jonas and me, but will hopefully grow over time.
+In the past I was hesitant to accept donations because I didn't want financial interest to affect (or have the appearance of affecting) my decisions about the project.
+I am building Ruma because I think the world needs Matrix, not as a way to support myself.
+Being able to share donations to Ruma with other developers makes me much more comfortable with accepting donations.
+It serves both to dilute my own financial interest in the project as well as to provide benefit in a way that's more in tune with the project's goals: making the world better for all of us.
+For anyone that decides to support the project on Liberapay, I offer my most sincere thanks.</p>
+<p>As for the software itself, the main update this week is that the revamp of ruma-events I've been working on for the past month is complete and has been merged into the master branch.
+I still need to do one quick pass over everything to be sure I didn't make any obvious mistakes, but once that's done it will be ready for a new release.
+As part of this revamp, a new supporting crate, <a href="https://github.com/ruma/ruma-events-macros">ruma-events-macros</a> also had its first release this week.
+Like ruma-api-macros, it's really only used as an internal dependency for the project, and doesn't have much use to other developers directly.
+But it could be interesting to look at if you want an example of a real-world procedural macro.</p>
+<p>There was also a new release of ruma-api, <a href="https://github.com/ruma/ruma-api/releases/tag/0.9.0">version 0.9.0</a>, which revises the API to support the upcoming futures 0.3, ironically by removing the dependency on futures entirely.
+This release also removes the library's dependency on hyper, as it's always been a goal for the foundational Ruma libraries to allow other developers to build Matrix software with other HTTP libraries if they wish.</p>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p><a href="https://riot.im/">Riot</a>, the flagship Matrix client, <a href="https://medium.com/@RiotChat/%EF%B8%8Fmessage-editing-%EF%B8%8F-reactions-5cffec8f71a2">released version 1.3</a> this week, which includes the ability to edit sent messages, and to add reactions to messages.
+Both of these features are highly requested and bring Riot in line with other high-profile collaboration software.</p>
+<p>Other notable news is the announcement to get <a href="https://github.com/matrix-org/dendrite">Dendrite</a>, a Matrix homeserver written in Go, into a state where it can have some practical use for Matrix users.
+The first goal is for it to support enough functionality to be used for Matrix bots.
+Read more about this announcement on <a href="https://matrix.org/blog/2019/07/19/this-week-in-matrix-2019-07-19">the lastest This Week in Matrix</a>.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

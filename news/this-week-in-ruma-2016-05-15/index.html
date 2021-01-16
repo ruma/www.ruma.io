@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-05-15/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-05-15" itemprop="datePublished">2016-05-15</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>There were only a few commits this week, but there was very good progress on the test suite and some internals.
+After trying several ways to work around libtest's lack of global setup and teardown hooks, and some issues with the way each test was running an Iron server in a thread keeping database connections open forever, I decided to move the setup and teardown outside of the Rust code itself.
+I explored the code of libtest and libsyntax and got to understand how it works and some of its limitations.
+I might be creating an RFC for Rust soon to give the programmer independent control of the test collector and the test runner, which are currently bound together under the <code>--test</code> flag (AKA <code>--cfg test</code>.)</p>
+<p>Now the PostgreSQL Docker container is started and stopped, and database migraitons are run from a shell script which wraps <code>cargo test</code>.
+The Iron app was similarly decoupled from the Iron server, so that integration testing can be done with <code>iron-test</code> without ever starting an actual server.
+Finally, I made some more progress on Matrix's user-interactive authentication system and got part of the <code>/login</code> endpoint completed.
+I expect it to be fully functional by next week.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>
+<p>Cleaned up test suite</p>
+<p>Complicated setup and teardown extracted from the Rust code.
+Test cases moved into the modules they test, rather than within a <code>tests</code>-directory-style module in <code>src/test</code>.</p>
+</li>
+<li>
+<p>Introduced <code>iron-test</code> to facilitate testing</p>
+<p>The test suite now has a single support type, <code>test::Test</code>, which does per-test setup and teardown via RAII and provides succinct helper methods for making requests and testing the responses.</p>
+</li>
+<li>
+<p>Initial version of the <code>/login</code> API added.</p>
+<p>The logic is all there, but there are some places where deserialization of the types used in the request body must be manually implemented because they differ in structure from what Serde can do with its custom derive attributes.</p>
+</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<p>The sections about authentication, registration, and login in the spec have seen some very nice improvements recently, but there are still some parts that are misleading or unclear.
+I'm in the process of getting a few things clarified that will help finally nail down how these various APIs should work.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

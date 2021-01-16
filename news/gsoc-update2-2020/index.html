@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>Oops, Now Revert | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-update2-2020/" itemprop="headline">
+            Oops, Now Revert
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-19" itemprop="datePublished">2020-06-19</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+    <p>This week in ruma-events' Google Summer of Code project, after trying out the new <code>Any*Event</code> enums <a href="https://github.com/DevinR528/matrix-rust-sdk/pull/2"><code>matrix-rust-sdk</code></a>, we found a few big flaws. There was no easy way to go from <code>StateEvent&lt;AnyStateEventContent&gt;</code> to <code>StateEvent&lt;SpecificEventContent&gt;</code>, the other issue was one could create a <code>StateEvent</code> with differing <code>content</code> and <code>prev_content</code> fields using the <code>AnyStateEventContent</code> enum. The <a href="https://github.com/ruma/ruma/pull/68">0.22 ruma-events</a> will be similar to the existing API; each event type has a corresponding event enum variant.</p>
+<pre style="background-color:#f5f5f5;">
+<code class="language-rust" data-lang="rust"><span style="color:#668f14;">pub enum </span><span style="color:#c23f31;">AnyStateEvent </span><span style="color:#1f1f1f;">{
+    RoomMember(StateEvent&lt;MemberEventContent&gt;),
+    RoomAliases(StateEvent&lt;AliasesEventContent&gt;),
+    </span><span style="color:#7f8989;">// ...
+</span><span style="color:#1f1f1f;">}
+</span></code></pre>
+<p>There were a few minor fixes during the week also. Unknown field deserialization is <a href="https://github.com/ruma/ruma/pull/57">fixed</a>, allowing deserialization of a JSON blob that has extra fields which are ignored. <a href="https://github.com/ruma/ruma/pull/59">Custom events</a> are now present in the <code>Any*EventContent</code> enums, although now they have to be moved up to be included in <code>Any*Event</code> enums. <a href="https://github.com/ruma/ruma/pull/52">Benchmarks</a> for deserialization have been added and used to increase performance.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

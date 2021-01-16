@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-12-11/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-12-11" itemprop="datePublished">2016-12-11</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>Another big milestone was reached this week: <a href="https://github.com/ruma/ruma-signatures">ruma-signatures</a> became the second Ruma crate to be published to crates.io.
+ruma-signatures is a stand-alone library for working with digital signatures used by the Matrix system.
+It can be used by either client or server code, and is not specific to the Ruma homeserver, so anyone writing clients, servers, bots, or integrations for Matrix can use it.
+One feature, the ability to sign Matrix events, is notably absent from this first release, mostly because Matrix's federation specification is still unstable.
+However, the library should still be useful as is.
+Check out the <a href="https://docs.rs/ruma-signatures">documentation</a> to learn how to use it.</p>
+<p>The release of ruma-signatures also makes it possible to finish the last remaining task in <a href="https://github.com/ruma/ruma-events">ruma-events</a>, which was to update a struct field to use one of the types from ruma-signatures. ruma-events should see its first release to crates.io next week, further expanding Ruma's contribution of independent Matrix libraries for the Rust ecosystem.
+In turn, ruma-events's release will unblock <a href="https://github.com/ruma/ruma-client-api">ruma-client-api</a>, which in turn will make it possible to begin implementing <a href="https://github.com/ruma/ruma-client">ruma-client</a>, which will be great for anyone looking to write a Matrix program in Rust.</p>
+<p>Back in the Ruma homeserver, there are several pull requests waiting for review, so more API endpoints will be implemented soon!</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Ruma's internal error type's API was improved using the <a href="http://www.suspectsemantics.com/blog/2016/11/29/the-into-trick/">Into&lt;Option&gt; trick</a> by a new contributor.</li>
+<li>Another new contributor fixed a bug in the <code>GET /_matrix/client/versions</code> endpoint, and made the crate's manifest consistent with the program's CLI.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>New types were added to support heterogeneous collections of events.</li>
+<li>The types for the <em>m.room.member</em> event now use the <code>Signatures</code> type from ruma-signatures.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Released crate version 0.5.0, with supports the new 0.9 release of Diesel.</li>
+</ul>
+<h2 id="new-contributors">New contributors</h2>
+<ul>
+<li><a href="https://github.com/anuragsoni">Anurag Soni</a></li>
+<li><a href="https://github.com/jstnlef">Justin LeFebvre</a></li>
+<li><a href="https://github.com/kyrias">Johannes Löthberg</a></li>
+</ul>
+<p>And a belated contribution attribution to my coworker and friend, <a href="https://github.com/rjfranco">Ramiro Jr. Franco</a>, who did a bunch of work to get Ruma's website started a while back.</p>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Last week I included this new section, and intend to include it every week from now on, to highlight ways people interested in the project can contribute.
+Writing code is not the only way to contribute.
+Adding or improving documentation, doing code review, and participating in discussions are helpful too!</p>
+<ul>
+<li>[discussion] <a href="https://github.com/ruma/ruma/issues/110">Implementing Event storage/search with a timeseries database or a lucene indexed database</a></li>
+<li>[bug] <a href="https://github.com/ruma/ruma/issues/121">Deadlock error while running test suite</a></li>
+<li>[feature] <a href="https://github.com/ruma/ruma/issues/107">Implement a rate-limiting middleware</a></li>
+</ul>
+<p>There are also plenty of API endpoints that still need to be implemented.
+Check the <a href="https://github.com/ruma/homeserver/blob/master/STATUS.md">status document</a> for a list.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-12-04/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-12-04" itemprop="datePublished">2016-12-04</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>We had a very productive week, landing several pull requests, including a major revamp of ruma-events and new APIs.</p>
+<p>A very important milestone was reached: The number of unstable Rust features Ruma uses was reduced from six to two!
+Ruma was migrated to the new Macros 1.1 approach for custom derive, which meant we were able to drop the <code>custom_attribute</code>, <code>custom_derive</code>, and <code>plugin</code> features.
+As part of the integration of the ruma-events revamp, <code>specialization</code> was also removed.
+With <code>question_mark</code> now stable, Ruma uses only <code>proc_macro</code> (Macros 1.1, which will be stable in a few more releases) and <code>try_from</code>, which I hope to see movement on soon.
+The day that Ruma can target stable Rust is approaching!</p>
+<p>The revamp of ruma-events changed the design of the library, so each of the kinds of event in Matrix (events, room events, and state events) are now traits rather than structs with two generic parameters.
+This change took quite a while, so I'm happy to have it finally integrated into Ruma.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for local room invitations.</li>
+<li>Removed unstable features: <code>custom_attribute</code>, <code>custom_derive</code>, <code>plugin</code>, and <code>specialization</code>.</li>
+<li>Updated to Macros 1.1 versions of Serde and Diesel.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li><code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> are now traits.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Released crate version 0.4.3, a small bump to update dependencies.</li>
+</ul>
+<h2 id="call-for-participation">Call for participation</h2>
+<p>Here are a couple of items to check out if you're interested in contributing to the project:</p>
+<ul>
+<li>For implementation: <a href="https://github.com/ruma/ruma/issues/115">Implement the Into&lt;Option&gt; trick for ApiError.</a>.</li>
+<li>For review and discussion: <a href="https://github.com/ruma/ruma-events/pull/5">Add types to support heterogeneous collections of events</a>.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-11-27/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-11-27" itemprop="datePublished">2016-11-27</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>It's been several weeks since I published an update to This Week in Ruma.
+I've been out of town for a lot of that time and too busy to give Ruma the time it deserves.
+This hasn't stopped Ruma's contributors from moving forward, however!
+There are several pull requests in various stages of completion and review.
+It will likely to continue to be on the quiet side for Ruma through the remainder of the year, but don't worry.
+The project is not going away.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for user profiles.</li>
+<li>New room aliases now properly generate an m.room.aliases event.</li>
+<li>The construction of API endpoints and the various middleware they use has been refactored to use a trait and a macro.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-10-09/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-10-09" itemprop="datePublished">2016-10-09</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Many thanks to Ruma's contributors this week.
+The status document is quickly going from red to green!</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for listing the members of a room.</li>
+<li>Added support for room-specific client configuration data.</li>
+<li>Added a new custom error code for cases where the client submits an invalid parameter.</li>
+<li>The creator of a room now automatically joins is.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-signatures">Notable changes to <a href="https://github.com/ruma/ruma-signatures">ruma-signatures</a></h2>
+<ul>
+<li>Added a <code>Signature</code> type that is produced from a <code>SigningKey</code>.</li>
+<li>Added a <code>SignatureSet</code> type that works like a set but serializes to a map, which is how a homeserver's signatures are represented in Matrix events.</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-10-02/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-10-02" itemprop="datePublished">2016-10-02</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <p>Ruma had some major progress this week.
+We're getting ever closer to the first alpha release.
+Ruma's fantastic community contributed implementations for several new API endpoints, with more on the way.</p>
+<p>On Friday I did my second live stream of Ruma development.
+If you missed it, you can <a href="https://www.youtube.com/watch?v=gApgMPEwvSc">watch the recording</a>.
+In it, I work on a new crate, ruma-client-api, the purpose of which is to separate the request and response data types for each API endpoint from the homeserver so that the same types can be used by client code.
+The general structure of the API has changed since the Friday screencast, and is coming together very nicely now.</p>
+<p>And finally, a milestone was reached with ruma-events by converting the <code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> types from structs to traits, greatly simplifying the overall API, and paving the way for better generic treatment of the different event kinds in the Ruma homeserver.
+Initially I thought it would require language support for <a href="https://github.com/rust-lang/rfcs/pull/1546">fields in traits</a>, but I managed to get almost the same effect with macros.
+At least ergonomic enough that I'm comfortable stabilizing the current API without fields in traits, at least once I verify that it works well in the homeserver code.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <a href="https://github.com/ruma/ruma">ruma</a></h2>
+<ul>
+<li>Added support for deactivating an account.</li>
+<li>Added support for joining a room.</li>
+<li>Added support for listing the members of a room.</li>
+<li>Cleaned up the way variable URL path parameters are handled, moving all the logic in to Iron middleware, and reducing the volume of code in each API's handler function.</li>
+<li>Squashed all database migrations into a single &quot;prerelease&quot; migration to make it easier for contributors to work on features requiring new tables concurrently, and because there is no need to have more than one migration per released version of Ruma.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-client-api">Notable changes to <a href="https://github.com/ruma/ruma-client-api">ruma-client-api</a></h2>
+<ul>
+<li>Added this new crate to share the request and response types between client and server.</li>
+<li>Overall API designed and types added for about a third of the Matrix client API functionality so far.</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li><code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code> are now traits, which unifies and simplifies the crate's overall API.</li>
+<li>Enums now implement <code>Display</code> and <code>FromStr</code>.</li>
+</ul>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;5&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">6 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;7&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

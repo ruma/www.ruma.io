@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-06-26/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-06-26" itemprop="datePublished">2016-06-26</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>There was a lot of work on documentation and code this week, but almost nothing landed on master, so unfortunately there is little to show.
+An initial draft of the Introduction to Matrix overview document has been pushed to a branch, but a few changes are still planned before it is released.
+On Ruma itself, a lot of work happened on a branch (currently unpublished) to add support for events to the system.
+Events are the primary object in the Matrix system, so the addition of this foundational layer will open the gates for all the other major features.
+The event system is not simple, however, and it's taking some time to figure out a good architecture for data persistence.
+Because events are involved in both the client-server and federation APIs, and the federation API has not yet had a stable release, it's very difficult to design the system properly.
+One issue (noted below) has been opened on the Matrix spec requesting clarification that may help to decide on a suitable architecture.</p>
+<h2 id="notable-changes-to-ruma">Notable changes to <code>ruma</code></h2>
+<ul>
+<li>Add <code>PUT /directory/room/:room_alias</code> endpoint. (Contributed by Johannes Oertel.)</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <code>ruma-events</code></h2>
+<ul>
+<li>Use generic types for <code>Event</code>, <code>RoomEvent</code>, and <code>StateEvent</code>.</li>
+<li>Add unsigned field to <code>RoomEvent</code> and <code>StateEvent</code>.</li>
+<li>Add <code>EventKind</code> trait.
+(The event kinds are basic events, room events, and state events.
+This trait can be useful to constrain a generic parameter that must be a Matrix event.)</li>
+</ul>
+<h2 id="matrix-at-large">Matrix at large</h2>
+<ul>
+<li><a href="https://matrix.org/jira/browse/SPEC-416">SPEC-416</a>: Document all event keys shown in examples</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

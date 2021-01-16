@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2019-07-14/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-07-14" itemprop="datePublished">2019-07-14</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <h2 id="from-the-editor">From the editor</h2>
+<p>In the <a href="/news/this-week-in-ruma-2019-07-07/">last update</a>, I mentioned that the ongoing ruma-events revamp was impeded by an issue with types from <em>ring</em> which don't implement <code>Clone</code> and <code>PartialEq</code>.
+It turns out that there is <a href="https://github.com/briansmith/ring/pull/727">a reasonable explanation for this</a>, and so it was decided to work around it.
+I restructured the ruma-signatures types in question so that they don't contain <em>ring</em> types, but simply construct them and use them as-needed in the relevant methods.</p>
+<p>While I was working on ruma-signatures, I decided to fill in the missing functionality—signing and verifying events.
+In the process of doing that, I ended up with a significantly revised API for the crate, which has now been released as <a href="https://github.com/ruma/ruma-signatures/releases/tag/0.5.0">version 0.5.0</a>.
+In a somewhat amusing development, the new ruma-signatures API doesn't include the <code>Signatures</code> and <code>SignatureSet</code> types that were causing the issue in ruma-events in the first place.
+As a result, ruma-events is not only unblocked, but doesn't have depend on ruma-signatures at all.</p>
+<p>I made a little bit more progress on ruma-events.
+There is only one module remaining to be updated to the new API, so we're on the home stretch for a new ruma-events release.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>

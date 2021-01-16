@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>Projects using Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="page-title">Projects using Ruma</h1>
+    <p>This page should list most of the projects that are using Ruma. We're happy to
+add yours if you tell us about it on
+<a href="https://github.com/ruma/ruma.github.io/issues/19">this issue</a>.</p>
+<p><em>Note: The site that was previously at this URL, containing an overview of the
+libraries that make up Ruma, is available <a href="/docs/crates/">here</a>.</em></p>
+<h2 id="matrix-rust-sdk">matrix-rust-sdk</h2>
+<p><a href="https://github.com/matrix-org/matrix-rust-sdk#matrix-rust-sdk">matrix-rust-sdk</a> (or just <code>matrix-sdk</code> <a href="https://crates.io/crates/matrix-sdk">on crates.io</a>) is a
+high-level client library on top of the Ruma libraries. There is a variety of
+client applications built with it:</p>
+<ul>
+<li><a href="https://wiki.gnome.org/Apps/Fractal">Fractal</a>: A GTK client (part of the GNOME project)</li>
+<li><a href="https://github.com/DevinR528/RumaTui#readme">RumaTui</a>: A command-line client</li>
+<li><a href="https://git.nao.sh/amanda/retrix">retrix</a>: A lightweight client built with <a href="https://github.com/hecrj/iced#readme">iced</a></li>
+<li><a href="https://github.com/poljar/weechat-matrix-rs#readme">Weechat-Matrix</a>: A plugin for weechat that adds Matrix support to it</li>
+<li><a href="https://github.com/tilosp/matrix-send-rs#readme">matrix-send</a>: A non-interactive command-line client</li>
+<li><a href="https://github.com/MTRNord/mrsbfh#readme">MRSBFH</a>: Matrix-Rust-SDK-Bot-Framework-Helper</li>
+<li><a href="https://gitlab.com/famedly/bots/timetracking">Timetracking-Bot by Famedly</a>: A bot for tracking work times, uses MRSBFH</li>
+</ul>
+<h2 id="conduit">Conduit</h2>
+<p><a href="https://conduit.rs/">Conduit</a> is a homeserver implementation built with Ruma. It implements most
+parts of the client-server API, the notable exception being
+notifications<sup>*</sup>, and also has experimental support for
+federation<sup>*</sup>. It tries to be easy to install, fast and robust.</p>
+<p><sup>*</sup> as of 2021-01-14</p>
+<h2 id="others">Others</h2>
+<p>These are smaller projects depending on Ruma instead of matrix-rust-sdk for
+various reasons:</p>
+<ul>
+<li><a href="https://github.com/sparky8251/matrix-bot#readme">sparky8251/matrix-bot</a>: &quot;a simple matrix bot aimed at medium to large
+projects that span many chat rooms and many active repos looking for more
+options than the official matrix bots can provide&quot;</li>
+<li><a href="https://dsn.tm.kit.edu/matrix/traveller/explained.html">DSN Traveller</a>: A bot that joins all rooms it can find through public room
+lists and room (alias) links posted in messages to allow analyses of the
+network at large</li>
+</ul>
+<h2 id="incomplete">Incomplete</h2>
+<p>These projects are incomplete and not actively being worked on:</p>
+<ul>
+<li><a href="https://github.com/daydream-mx?type=source">Daydream</a>: A client based on matrix-rust-sdk (one variant based on
+<a href="https://yew.rs/docs/en/">Yew</a> and one based on
+<a href="https://github.com/linebender/druid#druid">Druid</a>)</li>
+<li><a href="https://github.com/maelstrom-rs/maelstrom#readme">Maelstrom</a>: A homeserver designed to have a pluggable storage engine, to be
+scalable and light on resources</li>
+<li><a href="https://github.com/florianjacob/synadminctl#readme">synadminctl</a>: A synapse admin API command line interface</li>
+<li><a href="https://github.com/exul/matrix-rocketchat#readme">matrix-rocket.chat bridge</a>: What the name says</li>
+</ul>
+
+</main>
+
+
+</div>
+
+</html>

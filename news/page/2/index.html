@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>News | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<main class="content">
+    <h1 class="section-title">
+        News
+        <a href="/news/feed.xml"><svg viewBox="0 0 1536 1536" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+    <title>News feed (Atom)</title>
+    <path d="M384 1344c0 106-86 192-192 192S0 1450 0 1344s86-192 192-192 192 86 192 192zm512 123c1 18-5 35-17 48-12 14-29 21-47 21H697c-33 0-60-25-63-58-29-305-271-547-576-576-33-3-58-30-58-63V704c0-18 7-35 21-47 11-11 27-17 43-17h5c213 17 414 110 565 262 152 151 245 352 262 565zm512 2c1 17-5 34-18 47-12 13-28 20-46 20h-143c-34 0-62-26-64-60C1104 895 641 432 60 398c-34-2-60-30-60-63V192c0-18 7-34 20-46 12-12 28-18 44-18h3c350 18 679 165 927 414 249 248 396 577 414 927z"/>
+</svg>
+</a> 
+    </h1>
+    
+
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/gsoc-begins-2020/" itemprop="headline">
+            Ruma gets in on Google Summer of Code
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-06-01" itemprop="datePublished">2020-06-01</time>
+        by
+        <span class="author" itemprop="author">Devin Ragotzy</span>
+    </small>
+</header>
+
+            <p>Thanks to GSoC and the continued help of Jonas Platte, Ruma's GSoC mentor, there is a new contributor... me! My name is Devin Ragotzy, a University student from Michigan. I was chosen to help contribute to the macro code of ruma-events and ruma-api.</p>
+<h2 id="ruma-community-bonding">Ruma Community Bonding</h2>
+<p>Before the official coding period began on June 1st, a large breaking change started taking shape for the upcoming release of ruma-events <a href="https://github.com/ruma/ruma-events/issues/82">0.22.0</a>. Jonas, I, and others have been hard at work, replacing the previous event declaration macro with a set of derive macros and generic event types, as well as getting rid of the boilerplate required for event enums (the types currently found under <code>ruma_events::collections</code>). The new types will be able to express JSON events from a Matrix server with more accuracy.</p>
+<h2 id="planned-work-for-ruma-api">Planned work for ruma-api</h2>
+<p>Once the macros in ruma-events are implemented, I will switch gears to work on ruma-api.</p>
+<ul>
+<li>First, add a few tests to ensure the changes I make do not break important functionality
+<ul>
+<li>Test macro code using <code>macrotest</code> and/or <code>trybuild</code> which test errors or expansions respectively</li>
+</ul>
+</li>
+<li>Allow more code sharing between <code>Request</code> and <code>Response</code> processing inside the macro</li>
+<li>Refactor <code>ruma_api!</code>, breaking up the large block of code in <code>Api::to_tokens</code></li>
+<li>Document any refactored or new code as I work</li>
+</ul>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/ruma-is-dead-long-live-ruma-2020-04-10/" itemprop="headline">
+            Ruma is dead, long live Ruma!
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2020-04-10" itemprop="datePublished">2020-04-10</time>
+        by
+        <span class="author" itemprop="author">Jonas Platte</span>
+    </small>
+</header>
+
+            <p>Today, I have a bit of a sad announcement to make:</p>
+<h2 id="ruma-the-homeserver-won-t-be-developed-anymore">Ruma, the homeserver, won't be developed anymore</h2>
+<p>To those who have actively been following the project, this probably won't be a
+big surprise, given the homeserver's readme file was already update do note the
+missing maintenance and people interested in contributing to the homeserver have
+now gathered around a new homeserver project by the name of <a href="https://conduit.rs/">Conduit</a>.</p>
+<p>The main reason for ending homeserver development is that nobody who has
+previously worked on its codebase is currently able to guide and review work on
+it. The codebase has also bit-rotted a lot, with the web framework it uses being
+almost un-maintained and a number of its other dependencies having seen major
+new releases since the most recent commit; it also doesn't build on
+ruma-client-api, for the simple reason that ruma-client-api simply didn't exist
+yet when most of the homeserver work happened.</p>
+<p>However, the end of the homeserver does not at all mean the end of Ruma, the
+overall project.</p>
+<h2 id="the-future-of-ruma-the-project">The future of Ruma, the project</h2>
+<p>We will be continuing work on our library crates, making sure they are usable
+for all kinds of applications, including homeservers. The new homeserver project
+mentioned at the beginning is based on them and some other folks are currently
+working on <a href="https://github.com/matrix-org/matrix-rust-sdk">a highlevel client library</a>, also using many of
+Ruma's library crates.</p>
+<p>I am planning to replace the current website with a new one, mostly for
+technical reasons, but the new one will also reflect our changed focus. This
+work hasn't started yet, but in the interim I will likely update parts of the
+current site. Other than that, nothing will really be different compared to last
+year.</p>
+<h2 id="if-you-are-still-interested-in-a-rust-homeserver">If you are still interested in a Rust homeserver</h2>
+<p>… then check out <a href="https://conduit.rs/">Conduit</a>. It is a Matrix homeserver, written in Rust using
+Ruma's library crates. It is focused on experimenting with new ideas to achieve
+better performance, for example by using <a href="https://sled.rs/">sled</a> as its database. The goal is
+to make it as easy as possible to set up your own homeserver.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/these-weeks-in-ruma-2019-12-14/" itemprop="headline">
+            These Weeks in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-12-14" itemprop="datePublished">2019-12-14</time>
+        by
+        <span class="author" itemprop="author">Jonas Platte</span>
+    </small>
+</header>
+
+            <p>There's been steady progress since the last news entry, so I thought I'd write a small progress
+update again.</p>
+<p>These crates saw a new release:</p>
+<ul>
+<li>ruma-api-macros 0.9.0 (with an alpha beforehand)</li>
+<li>ruma-api 0.12.0 (with an alpha beforehand)</li>
+<li>ruma-client-api 0.5.0</li>
+<li>ruma-client 0.3.0-beta.2</li>
+<li>ruma-identifiers 0.14.1</li>
+</ul>
+<h2 id="what-changed">What changed?</h2>
+<p>The biggest thing that changed is that the temporary non-support of server-side usage of ruma-api
+that I wrote about last time has ended. Restoring server-side support also required some changes to
+ruma-client-api, but those were rather minimal because all of the additional logic that deals with
+the client / server side distinction is hidden away in ruma-api(-macros).</p>
+<p>Moreover, ruma-client now has no more dependencies with alpha or beta versions, and will have its
+0.3.0 release soon (pending a small update from hyper). ruma-identifiers now supports historical
+user IDs, which are user IDs can't actually be created on a matrix homeserver because they contain
+invalid characeters, but nevertheless have to be supported because older versions of the
+specification allowed these characters and as such some users still have them in their IDs.</p>
+<h2 id="server-side-support">Server-side support</h2>
+<p>To support fallible deserialization on both ends of the protocol, the request-sending /
+response-receiving side (when dealing with the client-server protocl, this is the client) and the
+request-receiving / response-sending side (the server) now use different types if request or
+response structs contain events. For every <code>Request</code> or <code>Response</code> that contains an event (or
+another struct that contains another struct that contains a <code>Vec</code> of events and such) we now
+generate a corresponding <code>IncomingRequest</code> / <code>IncomingResponse</code>. The non-<code>Incoming</code> structs don't
+use ruma-events' <code>EventResult</code> type, while the <code>Incoming</code> types do.</p>
+<p>For details about how these new structs are generated, see the <a href="https://docs.rs/ruma-api/0.12.0/ruma_api/derive.Outgoing.html">documentation for the new <code>Outgoing</code>
+derive macro</a>.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/new-releases-2019-11-05/" itemprop="headline">
+            New releases
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-11-05" itemprop="datePublished">2019-11-05</time>
+        by
+        <span class="author" itemprop="author">Jonas Platte</span>
+    </small>
+</header>
+
+            <p>Last week, we uploaded 7 (!) new versions of our crates to crates.io:</p>
+<ul>
+<li>ruma-events-macros 0.2.0</li>
+<li>ruma-events 0.15.0</li>
+<li>ruma-events 0.15.1 (bugfix release because ruma-events 0.15.0 was released a tad too early)</li>
+<li>ruma-api-macros 0.8.0</li>
+<li>ruma-api 0.11.0</li>
+<li>ruma-client-api 0.4.0</li>
+<li>ruma-client 0.3.0-beta.1</li>
+</ul>
+<h2 id="what-changed">What changed?</h2>
+<p>A quick overview:</p>
+<ul>
+<li>ruma-events 0.15 improves event deserialization and validation</li>
+<li>the latest ruma-api &amp; ruma-client-api are only useable for implementing client-side stuff, server-side functionality will be added back in a later release</li>
+<li>ruma-client 0.3.0-beta.1 supports async/await, the final version will be published after its dependencies are final too</li>
+</ul>
+<p>And now to the technical details...</p>
+<h2 id="fallible-event-deserialization">Fallible event deserialization</h2>
+<p>The most important change is one in ruma-events, and it is <em>the</em> reason all of the other crates saw a new release too. ruma-events 0.15.0 introduces a type <code>EventResult&lt;T&gt;</code>, which is almost the same as <code>Result&lt;T, ruma_events::InvalidEvent&gt;</code> (and it is in fact convertible to that) but with one important difference: It implements <code>serde::Deserialize</code> in a different way. Deserializing an <code>EventResult&lt;T&gt;</code> almost always succeeds. It tries to deserialize the <code>T</code>, and if that fails, falls back to <code>serde_json::Value</code> deserialization. However, in contrast to the fallback one would get with <code>Result&lt;T, serde_json::Value&gt;</code> deserialization which is supported by serde directly, we also capture the error message from <code>T</code>s deserialization... or validation:</p>
+<h2 id="event-validation">Event validation</h2>
+<p>I left out one detail in the previous section, and that is that the <code>T</code> in <code>EventResult&lt;T&gt;</code> doesn't actually need to implement <code>Deserialize</code>. Instead, it needs to implement <code>TryFromRaw</code>. This trait is very similar to <code>TryFrom</code> from the standard library, and in fact we would have used <code>TryFrom</code> directly, were it not for coherence issues¹. This trait is implemented for every event (content) type in ruma-events and allows conversion of a private raw version of that type, which does implement <code>Deserialize</code>, to the actual event (content) type. All of this is done to enable validation of events during deserialization, without having to write the actual deserialization code manually. There are currently few events that need this validation step after deserialization (most of the constraints the matrix spec puts on json fields beyond their types are captured in their Rust types, e.g. using <code>UserId</code> instead of <code>String</code>), but it is nevertheless useful to have the required mechanisms in place.</p>
+<p>¹ <a href="https://github.com/rust-lang/rust/issues/55437">RFC 2451</a> &quot;Re-Rebalancing Coherence&quot; might allow us to switch to <code>TryFrom</code> in a future release, though I have not tested this yet</p>
+<h2 id="temporary-non-support-of-server-side-usage">Temporary non-support of server-side usage</h2>
+<p>Because of the whole fallible deserialization thing, we might not be able to use the same Rust types on both client &amp; server anymore. Due to that and the server not being worked on currently, we decided to temporarily remove request deserialization and response serialization from ruma-api and ruma-api-macros, leaving request serialization and response deserialization, as needed for the client use case. This affects ruma-client-api as well, through its use of the aforementioned crates.</p>
+<h2 id="async-await-in-ruma-client">Async/await in ruma-client</h2>
+<p>As listed at the beginning, we published ruma-client 0.3.0-beta.1. This release supports <code>async</code> / <code>await</code> syntax in addition to using all the latest lower-level ruma crates. While <code>async</code> / <code>await</code> will become stable with Rust 1.39.0 on 2019-11-09, tokio 0.2.0 is expected to take some more time to come out, which will in turn affect hyper 0.13.0's final release and thus our 0.3.0 release. Nevertheless, ruma-client 0.3.0-beta.1 can be used today on Rust beta or nightly.</p>
+
+        </article>
+    
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+            
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2019-08-11/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-08-11" itemprop="datePublished">2019-08-11</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+            <h2 id="from-the-editor">From the editor</h2>
+<p>I did another live stream of Ruma development on <a href="https://www.twitch.tv/jimmycuadra">my Twitch channel</a> this past week.
+If you missed it, you can watch <a href="https://www.youtube.com/watch?v=vfMvGWCBkVI">the recording on YouTube</a>.
+In the stream, I worked on another revision to the <a href="https://github.com/ruma/ruma-events">ruma-events</a> API in which a special result type was introduced to handle deserialization/validation errors.
+<a href="https://github.com/jplatte">Jonas</a> quickly discovered, upon trying to update <a href="https://github.com/ruma/ruma-client-api">ruma-client-api</a> to ruma-events 0.10, that the new deserialization API didn't quite work and that further changes were needed.
+I updated all the manually events to the <em>new</em> new API, but the events generated by <a href="https://github.com/ruma/ruma-events-macros">ruma-events-macros</a> still need to be updated.
+I will do that on the next stream in the coming week.</p>
+<p>A couple weeks ago I recorded an interview with the <a href="https://rustacean-station.org/">Rustacean Station</a> podcast, and today the episode was released.
+You can find it here: <a href="https://rustacean-station.org/episode/001-ruma/">Ruma and the Matrix Communication Protocol: An Interview with Jimmy Cuadra</a>.
+A huge thanks to Ben Striegel and Jon Gjengset for starting the podcast, and to Ben and Abdou Seck for taking the time to record this episode with me.
+It was a good time, and I hope it gets some new people interested in Matrix and/or Ruma.</p>
+
+        </article>
+    
+</main>
+
+<nav class="pagination">
+    <div class="prev">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;"><span aria-hidden="true">&larr;</span> Newer entries</a>
+        
+    </div>
+    <span class="page-number">2 / 10</span>
+    <div class="next">
+        
+        <a href="https:&#x2F;&#x2F;www.ruma.io&#x2F;news&#x2F;page&#x2F;3&#x2F;">Older entries <span aria-hidden="true">&rarr;</span></a>
+        
+    </div>
+</nav>
+
+
+
+</div>
+
+</html>

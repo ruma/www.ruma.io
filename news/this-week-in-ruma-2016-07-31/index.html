@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>This Week in Ruma | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/this-week-in-ruma-2016-07-31/" itemprop="headline">
+            This Week in Ruma
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2016-07-31" itemprop="datePublished">2016-07-31</time>
+        by
+        <span class="author" itemprop="author">Jimmy Cuadra</span>
+    </small>
+</header>
+
+    <p>This week <a href="https://github.com/serde-rs/serde/releases/tag/v0.8.0">serde 0.8.0</a> was released, offering a new serialization API.
+Most of the work on Ruma was towards serialization of the ID and event types.
+This will support the next step of implementing APIs in the homeserver that take events as user input.
+In addition to the changes landed in ruma-events, I've been working on figuring out how to approach Matrix types that are represented as enums in Rust code but involve checking the value of a key in the JSON structure of the serialized form to determine which variant it is.
+I hope to get this nailed down and committed by next week's update.</p>
+<h2 id="notable-changes-to-ruma-identifiers">Notable changes to <a href="https://github.com/ruma/ruma-identifiers">ruma-identifiers</a></h2>
+<ul>
+<li>Implement serialization and deserialization for ID types.</li>
+<li>Change the <code>new</code> constructor to an implementation of <code>TryFrom</code> and add a separate <code>generate</code> constructor for generating new IDs with random localparts.</li>
+<li>Begin running the test suite on Travis CI.</li>
+<li>Publish the crate to crates.io.
+ruma-identifiers is the first Ruma component to get a crates.io release!</li>
+</ul>
+<h2 id="notable-changes-to-ruma-events">Notable changes to <a href="https://github.com/ruma/ruma-events">ruma-events</a></h2>
+<ul>
+<li>Convert the types of struct fields that represent a Matrix ID from <code>String</code> to the relevant type from ruma-identifiers.</li>
+<li>Manually implement serialization and deserialization for a few enum types where the variant name appears in JSON camel cased.
+This was initially done by copy/pasting similar code between types, but was replaced with a macro that reduced a lot of duplication (and actually increased the test suite coverage by testing every single variant of each enum.)</li>
+<li>Begin running the test suite on Travis CI.</li>
+</ul>
+
+</article>
+
+
+
+
+</div>
+
+</html>

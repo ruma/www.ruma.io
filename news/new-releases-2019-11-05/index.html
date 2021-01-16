@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/atom+xml" href="/news/feed.xml" title="Ruma" />
+
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'none';
+    style-src 'self' 'unsafe-inline';
+    frame-src 'none'">
+
+<title>New releases | Ruma</title>
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/site.css">
+
+<nav class="site-nav">
+    <ul>
+    
+        <li><a href="&#x2F;">Home</a></li>
+    
+        <li><a href="&#x2F;news&#x2F;">News</a></li>
+    
+        <li><a href="&#x2F;projects&#x2F;">Projects using Ruma</a></li>
+    
+        <li><a href="https:&#x2F;&#x2F;liberapay.com&#x2F;ruma&#x2F;">Donate on Liberapay</a></li>
+    
+        <li><a href="&#x2F;docs&#x2F;">Documentation</a></li>
+    
+    </ul>
+</nav>
+
+<div class="page">
+    
+
+<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+    
+<header class="post-header">
+    <h1 class="post-title">
+        <a href="https://www.ruma.io/news/new-releases-2019-11-05/" itemprop="headline">
+            New releases
+        </a>
+    </h1>
+    <small>
+        › published on
+        <time datetime="2019-11-05" itemprop="datePublished">2019-11-05</time>
+        by
+        <span class="author" itemprop="author">Jonas Platte</span>
+    </small>
+</header>
+
+    <p>Last week, we uploaded 7 (!) new versions of our crates to crates.io:</p>
+<ul>
+<li>ruma-events-macros 0.2.0</li>
+<li>ruma-events 0.15.0</li>
+<li>ruma-events 0.15.1 (bugfix release because ruma-events 0.15.0 was released a tad too early)</li>
+<li>ruma-api-macros 0.8.0</li>
+<li>ruma-api 0.11.0</li>
+<li>ruma-client-api 0.4.0</li>
+<li>ruma-client 0.3.0-beta.1</li>
+</ul>
+<h2 id="what-changed">What changed?</h2>
+<p>A quick overview:</p>
+<ul>
+<li>ruma-events 0.15 improves event deserialization and validation</li>
+<li>the latest ruma-api &amp; ruma-client-api are only useable for implementing client-side stuff, server-side functionality will be added back in a later release</li>
+<li>ruma-client 0.3.0-beta.1 supports async/await, the final version will be published after its dependencies are final too</li>
+</ul>
+<p>And now to the technical details...</p>
+<h2 id="fallible-event-deserialization">Fallible event deserialization</h2>
+<p>The most important change is one in ruma-events, and it is <em>the</em> reason all of the other crates saw a new release too. ruma-events 0.15.0 introduces a type <code>EventResult&lt;T&gt;</code>, which is almost the same as <code>Result&lt;T, ruma_events::InvalidEvent&gt;</code> (and it is in fact convertible to that) but with one important difference: It implements <code>serde::Deserialize</code> in a different way. Deserializing an <code>EventResult&lt;T&gt;</code> almost always succeeds. It tries to deserialize the <code>T</code>, and if that fails, falls back to <code>serde_json::Value</code> deserialization. However, in contrast to the fallback one would get with <code>Result&lt;T, serde_json::Value&gt;</code> deserialization which is supported by serde directly, we also capture the error message from <code>T</code>s deserialization... or validation:</p>
+<h2 id="event-validation">Event validation</h2>
+<p>I left out one detail in the previous section, and that is that the <code>T</code> in <code>EventResult&lt;T&gt;</code> doesn't actually need to implement <code>Deserialize</code>. Instead, it needs to implement <code>TryFromRaw</code>. This trait is very similar to <code>TryFrom</code> from the standard library, and in fact we would have used <code>TryFrom</code> directly, were it not for coherence issues¹. This trait is implemented for every event (content) type in ruma-events and allows conversion of a private raw version of that type, which does implement <code>Deserialize</code>, to the actual event (content) type. All of this is done to enable validation of events during deserialization, without having to write the actual deserialization code manually. There are currently few events that need this validation step after deserialization (most of the constraints the matrix spec puts on json fields beyond their types are captured in their Rust types, e.g. using <code>UserId</code> instead of <code>String</code>), but it is nevertheless useful to have the required mechanisms in place.</p>
+<p>¹ <a href="https://github.com/rust-lang/rust/issues/55437">RFC 2451</a> &quot;Re-Rebalancing Coherence&quot; might allow us to switch to <code>TryFrom</code> in a future release, though I have not tested this yet</p>
+<h2 id="temporary-non-support-of-server-side-usage">Temporary non-support of server-side usage</h2>
+<p>Because of the whole fallible deserialization thing, we might not be able to use the same Rust types on both client &amp; server anymore. Due to that and the server not being worked on currently, we decided to temporarily remove request deserialization and response serialization from ruma-api and ruma-api-macros, leaving request serialization and response deserialization, as needed for the client use case. This affects ruma-client-api as well, through its use of the aforementioned crates.</p>
+<h2 id="async-await-in-ruma-client">Async/await in ruma-client</h2>
+<p>As listed at the beginning, we published ruma-client 0.3.0-beta.1. This release supports <code>async</code> / <code>await</code> syntax in addition to using all the latest lower-level ruma crates. While <code>async</code> / <code>await</code> will become stable with Rust 1.39.0 on 2019-11-09, tokio 0.2.0 is expected to take some more time to come out, which will in turn affect hyper 0.13.0's final release and thus our 0.3.0 release. Nevertheless, ruma-client 0.3.0-beta.1 can be used today on Rust beta or nightly.</p>
+
+</article>
+
+
+
+
+</div>
+
+</html>
